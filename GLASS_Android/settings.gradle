@@ -1,0 +1,2 @@
+rootProject.name = "GLASS_Android"
+include ':app'
