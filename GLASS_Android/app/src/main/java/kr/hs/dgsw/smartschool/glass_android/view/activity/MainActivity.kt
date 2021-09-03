@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.MainViewModel
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivityMainBinding
@@ -25,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         performDataBinding()
 
-        initNavigationBar()
+        setBottomNav();
+
     }
 
 
@@ -35,33 +39,13 @@ class MainActivity : AppCompatActivity() {
         binding.vm = mainViewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-
-
     }
 
-    private fun initNavigationBar() {
-         binding.bnvMain.run {
-             setOnNavigationItemSelectedListener {
-                 when(it.itemId) {
-                     R.id.main_home -> {
-                         changeFragment(homeFragment)
-                     }
-                     R.id.main_search -> {
-                         changeFragment(searchFragment)
-                     }
-                     R.id.main_profile -> {
-                         changeFragment(profileFragment)
-                     }
-                 }
-                 true
-             }
-             selectedItemId = R.id.main_home
-         }
-    }
-    private fun changeFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.main_fm_container, fragment)
-            .commit()
+    private fun setBottomNav() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        val navController = navHostFragment.navController
+        findViewById<BottomNavigationView>(R.id.bnv_main)
+            .setupWithNavController(navController)
     }
 }
