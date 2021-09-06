@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GLASS_Android</string>
+
+    <string name="HOME">HOME</string>
+
+    <string name="SEARCH">SEARCH</string>
+
+    <string name="PROFILE">PROFILE</string>
 </resources>
