@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment by lazy { HomeFragment() }
     private val searchFragment by lazy { SearchFragment() }
     private val profileFragment by lazy { ProfileFragment() }
-
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         performDataBinding()
 
-        setBottomNav();
+        setBottomNav()
 
     }
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         val navController = navHostFragment.navController
-        findViewById<BottomNavigationView>(R.id.bnv_main)
+        binding.bnvMain
             .setupWithNavController(navController)
     }
 }
