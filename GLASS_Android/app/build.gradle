@@ -54,4 +54,26 @@ dependencies {
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+
+    // dots Indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    // viewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // firebase
+    //implementation 'com.google.firebase:firebase-messaging-ktx'
+    //implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // CircularImageView
+    implementation "com.mikhaellopez:circularimageview:4.3.0"
+
 }
