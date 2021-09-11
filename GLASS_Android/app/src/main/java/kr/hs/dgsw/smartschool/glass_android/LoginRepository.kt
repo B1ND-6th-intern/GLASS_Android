@@ -2,6 +2,9 @@ package kr.hs.dgsw.smartschool.glass_android
 
 import androidx.lifecycle.ViewModel
 
-interface LoginRepository {
-    fun login()
+class LoginRepository {
+    fun login(id: String, pw: String) {
+
+    }
+
 }

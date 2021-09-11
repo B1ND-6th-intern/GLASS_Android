@@ -5,14 +5,15 @@
 
     <data>
         <variable
-            name="imgUrl"
-            type="String" />
+            name="postimgvm"
+            type="kr.hs.dgsw.smartschool.glass_android.viewmodel.item.PostItemImgViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#bfbfbf">
 
         <ImageView
             android:id="@+id/img_post_content_img"
@@ -22,8 +23,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:photoUrl="@{imgUrl}"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_iv_noimage"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
