@@ -4,20 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ItemHomePostedImgBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
 
-private class PostedImgAdapter(private val context: Context):
+class PostedImgAdapter(val lifecycleOwner: LifecycleOwner):
     RecyclerView.Adapter<PostedImgAdapter.PagerViewHolder>() {
 
-    private var postImgList : List<PostImg> = ArrayList<PostImg>()
-
-    fun setPostImgList(postImgList: ArrayList<PostImg>) {
-        this.postImgList = postImgList
-    }
+    var postImgList : List<PostImg> = ArrayList<PostImg>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

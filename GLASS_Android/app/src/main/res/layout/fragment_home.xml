@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="homevm"
+            name="vm"
             type="kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.HomeViewModel" />
     </data>
 
@@ -23,7 +23,7 @@
             android:layout_weight="1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:listitem="@layout/item_home_post"
+            tools:listitem="@layout/fragment_post_item"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
