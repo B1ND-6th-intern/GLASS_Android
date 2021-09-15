@@ -93,20 +93,19 @@
 
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                 android:id="@+id/indicator_post"
-                android:layout_width="59dp"
+                android:layout_width="70dp"
                 android:layout_height="9dp"
                 app:dotsColor="#BFBFBF"
                 app:dotsCornerRadius="8dp"
                 app:dotsSize="7dp"
                 app:dotsSpacing="2dp"
-                app:dotsWidthFactor="3"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_post_heart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.709"
                 app:progressMode="true"
-                app:selectedDotColor="@color/design_default_color_primary" />
+                app:selectedDotColor="#6495ED" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -63,6 +63,7 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
                 var adapter = PostedImgAdapter(postImgList)
                 binding.viewPagerPost.orientation= ViewPager2.ORIENTATION_HORIZONTAL
                 binding.viewPagerPost.adapter = adapter
+                binding.indicatorPost.setViewPager2(binding.viewPagerPost)
             }
         }
     }
