@@ -12,13 +12,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#bfbfbf">
 
         <ImageView
-            android:id="@+id/img_post_content_img"
+            android:id="@+id/img_post_content"
             android:layout_width="match_parent"
-            android:layout_height="375dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

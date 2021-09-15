@@ -10,7 +10,6 @@ import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.Post
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
-import retrofit2.http.POST
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -29,6 +28,7 @@ class HomeFragment : Fragment() {
 
         initRecycler()
 
+
         return binding.root
     }
 
@@ -39,11 +39,11 @@ class HomeFragment : Fragment() {
         binding.homeRecycler.adapter = homeRecyclerAdapter
 
         postList.apply {
-            add(Post("asdjfdafj", "1320 최민재", "sdadfjslk", "1411"))
-            add(Post("aasdfasdfa", "선생님 송준호", "asdfkljaslkfj", "25225"))
-            add(Post("asdjfdasdfafj", "학부모 이경태", "sdadfsadfajslk", "0"))
-            add(Post("asafj", "1421 손원", "sdadfsadfasdf", "14"))
-            add(Post("asafjasdf", "1555 남궁경헌", "sdadfasdf", "256"))
+            add(Post("https://image.msscdn.net/data/curating/16948/16948_1_org.jpg", "1320 최민재", "1411"))
+            add(Post("aasdfasdfa", "선생님 송준호", "25225"))
+            add(Post("https://news.imaeil.com/inc/photos/2020/08/31/2020083115381755161_l.jpg", "학부모 이경태", "0"))
+            add(Post("asafj", "1421 손원", "14"))
+            add(Post("https://images.chosun.com/resizer/HoGaPo0K-HNh_w9wmkUxpt404rc=/616x0/filters:focal(291x444:301x454)/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/XG2MW2H3ZRW5FHDVSOMF6FDT3E.jpg", "1555 남궁경헌", "256"))
 
         }
         homeRecyclerAdapter.recyclerPostList = postList as ArrayList<Post>

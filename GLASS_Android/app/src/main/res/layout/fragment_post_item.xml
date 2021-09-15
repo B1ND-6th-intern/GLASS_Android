@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -22,6 +23,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="11dp"
+                android:backgroundTint="#BFBFBF"
                 android:src="@drawable/img_test"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,20 +93,19 @@
 
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                 android:id="@+id/indicator_post"
-                android:layout_width="59dp"
+                android:layout_width="70dp"
                 android:layout_height="9dp"
                 app:dotsColor="#BFBFBF"
                 app:dotsCornerRadius="8dp"
                 app:dotsSize="7dp"
                 app:dotsSpacing="2dp"
-                app:dotsWidthFactor="3"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_post_heart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.709"
                 app:progressMode="true"
-                app:selectedDotColor="@color/design_default_color_primary" />
+                app:selectedDotColor="#6495ED" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

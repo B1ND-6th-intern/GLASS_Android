@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
-import kr.hs.dgsw.smartschool.glass_android.databinding.ItemHomePostBinding
+import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentPostItemBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.Post
+import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
 
 class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
     RecyclerView.Adapter<HomeRecyclerAdapter.HomeViewHolder>(){
@@ -22,7 +24,7 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
         return HomeViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_home_post,
+                R.layout.fragment_post_item,
                 parent,
                 false
             )
@@ -35,7 +37,7 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
 
     override fun getItemCount(): Int = recyclerPostList.size
 
-    inner class HomeViewHolder(private val binding: ItemHomePostBinding): RecyclerView.ViewHolder(binding.root) {
+    class HomeViewHolder(private val binding: FragmentPostItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: Post) {
             with(post) {
@@ -44,10 +46,24 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
 
                 Glide.with(binding.root)
                     .load(profileImage)
-                    .error(R.drawable.ic_img_default_profile)
+                    .error(R.drawable.ic_img_profile)
                     .centerCrop()
                     .into(binding.ivUserProfile)
 
+                var postImgList: ArrayList<PostImg> = ArrayList()
+
+                postImgList.apply {
+                    add(PostImg("https://img2.sbs.co.kr/img/sbs_cms/WE/2019/08/09/WE97496996_ori.jpg"))
+                    add(PostImg("https://images.chosun.com/resizer/HoGaPo0K-HNh_w9wmkUxpt404rc=/616x0/filters:focal(291x444:301x454)/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/XG2MW2H3ZRW5FHDVSOMF6FDT3E.jpg"))
+                    add(PostImg("https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/7mo5/image/RhMj77_UZ1G9smD_INrbLKRVVoc.jpg"))
+                    add(PostImg("https://news.imaeil.com/inc/photos/2020/08/31/2020083115381755161_l.jpg"))
+                    add(PostImg("https://upload3.inven.co.kr/upload/2021/01/19/bbs/i14096652616.jpg"))
+                }
+
+                var adapter = PostedImgAdapter(postImgList)
+                binding.viewPagerPost.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+                binding.viewPagerPost.adapter = adapter
+                binding.indicatorPost.setViewPager2(binding.viewPagerPost)
             }
         }
     }
