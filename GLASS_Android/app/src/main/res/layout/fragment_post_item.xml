@@ -7,7 +7,6 @@
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.glass_android.viewmodel.item.MainPostItemViewModel" />
-
     </data>
 
     <LinearLayout
@@ -24,6 +23,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="11dp"
+                android:backgroundTint="#BFBFBF"
                 android:src="@drawable/img_test"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
