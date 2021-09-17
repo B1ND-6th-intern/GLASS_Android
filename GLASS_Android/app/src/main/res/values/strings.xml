@@ -8,4 +8,6 @@
     <string name="PROFILE">PROFILE</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="id"> 이메일 </string>
+    <string name="pw"> 비밀번호 </string>
 </resources>
