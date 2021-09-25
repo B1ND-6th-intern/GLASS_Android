@@ -15,13 +15,11 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.ProfileFragment">
 
-
         <ImageButton
             android:id="@+id/btn_setting"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_btn_setting"
-            android:onClick="@{()->vm.onClickSetting}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
