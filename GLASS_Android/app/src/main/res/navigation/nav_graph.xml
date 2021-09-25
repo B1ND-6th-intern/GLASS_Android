@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/main_search" />
+        <action
+            android:id="@+id/action_main_home_to_main_profile"
+            app:destination="@id/main_profile" />
     </fragment>
 
     <fragment
@@ -23,11 +26,29 @@
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
             app:destination="@id/main_profile" />
+        <action
+            android:id="@+id/action_main_search_to_main_home"
+            app:destination="@id/main_home" />
     </fragment>
 
     <fragment
         android:id="@+id/main_profile"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_main_profile_to_main_search"
+            app:destination="@id/main_search" />
+        <action
+            android:id="@+id/action_main_profile_to_main_home"
+            app:destination="@id/main_home" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="kr.hs.dgsw.smartschool.glass_android.view.activity.LoginActivity"
+        android:label="LoginActivity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity"
+        android:label="MainActivity" />
 </navigation>
