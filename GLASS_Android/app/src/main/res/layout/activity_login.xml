@@ -19,24 +19,24 @@
             android:id="@+id/imageView"
             android:layout_width="180dp"
             android:layout_height="80dp"
-            android:layout_marginTop="20dp"
             android:src="@drawable/ic_glasslogo"
             app:layout_constraintBottom_toTopOf="@+id/edit_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="40dp"
+            />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="60dp"
             android:layout_marginRight="25dp"
-            android:background="@drawable/button_design"
+            android:backgroundTint="@color/main"
             android:text="로그인"
             android:onClick="@{() -> vm.onClickLogin()}"
-            android:textColor="@color/main"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -16,7 +16,7 @@
         tools:context=".view.activity.SelectJobActivity">
 
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_back_login"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/ic_btn_back"
