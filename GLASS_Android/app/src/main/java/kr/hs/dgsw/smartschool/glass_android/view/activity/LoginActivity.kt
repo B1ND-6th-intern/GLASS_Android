@@ -23,6 +23,11 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
             })
+
+            onSignUpEvent.observe(this@LoginActivity, {
+                val intent = Intent(this@LoginActivity, SelectJobActivity::class.java)
+                startActivity(intent)
+            })
         }
     }
 
