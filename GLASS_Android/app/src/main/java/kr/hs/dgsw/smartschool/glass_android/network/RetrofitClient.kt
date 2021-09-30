@@ -10,7 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    //    private const val BASE_URL = "http://10.80.162.123:8080/"
+    private const val BASE_URL = "http://10.80.162.123:8080/"
+    //private const val BASE_URL = "https://glass.loca.lt/"
     val loginInterface: Login
     val signUpInterface: SignUp
 
@@ -20,12 +21,13 @@ object RetrofitClient {
         intercepter.level = HttpLoggingInterceptor.Level.BODY
 
         val logger = OkHttpClient.Builder().addInterceptor(intercepter)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(20, TimeUnit.SECONDS)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
             .build()
 
         val instance = Retrofit.Builder()
-            .baseUrl("https://glass.loca.lt/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(logger)
             .build()

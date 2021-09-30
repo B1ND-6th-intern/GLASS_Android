@@ -9,12 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivitySignUpStudentBinding
+import kr.hs.dgsw.smartschool.glass_android.network.response.EmailResponse
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.SelectJobViewModel
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.SignUpStudentViewModel
 
 class SignUpStudentActivity : AppCompatActivity() {
     lateinit var binding : ActivitySignUpStudentBinding
     lateinit var signUpStudentViewModel : SignUpStudentViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,11 @@ class SignUpStudentActivity : AppCompatActivity() {
                 }
             })
 
-            onBackSelect.observe(this@SignUpStudentActivity, {
+            onEmailEvent.observe(this@SignUpStudentActivity, {
+                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+            })
+
+            onBackSelectEvent.observe(this@SignUpStudentActivity, {
                 finish()
             })
         }
