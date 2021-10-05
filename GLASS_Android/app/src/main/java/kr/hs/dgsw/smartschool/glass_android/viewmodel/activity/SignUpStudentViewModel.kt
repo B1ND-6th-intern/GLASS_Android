@@ -1,10 +1,8 @@
 package kr.hs.dgsw.smartschool.glass_android.viewmodel.activity
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.DialogFragmentNavigatorDestinationBuilder
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.SignUpRequest
@@ -13,15 +11,14 @@ import kr.hs.dgsw.smartschool.glass_android.network.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class SignUpStudentViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
-    val onEmailEvent = SingleLiveEvent<Unit>()
+    // val onEmailEvent = SingleLiveEvent<Unit>()
 
-    val sendCount: Int = 0
-    val message: String = ""
+   /* val sendCount: Int = 0
+    val message: String = ""*/
 
 
     val name = MutableLiveData<String>()
@@ -47,7 +44,7 @@ class SignUpStudentViewModel : ViewModel() {
                 classNumber.value!!.toInt(),
                 stuNumber.value!!.toInt()
         )
-        val emailResponse = RetrofitClient.signUpInterface.sendEmail(sendCount, message)
+        // val emailResponse = RetrofitClient.signUpInterface.sendEmail(sendCount, message)
 
         RetrofitClient.signUpInterface.signUp(signUpRequest).enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
@@ -56,7 +53,7 @@ class SignUpStudentViewModel : ViewModel() {
                     onSignUpEvent.call()
 
                     // Email 보내기
-                    emailResponse.enqueue(object : Callback<EmailResponse> {
+                    /*emailResponse.enqueue(object : Callback<EmailResponse> {
                         override fun onResponse(emailCall: Call<EmailResponse>, emailResponse: Response<EmailResponse>) {
                             if (emailResponse.isSuccessful) {
                                 onEmailEvent.call()
@@ -68,10 +65,10 @@ class SignUpStudentViewModel : ViewModel() {
                         override fun onFailure(emailCall: Call<EmailResponse>, t: Throwable) {
                             Log.d("Retrofit2", "onFailure: $t")
                         }
-                    })
+                    })*/
 
                 } else {
-                    Log.d("Retrofit2", "onResponse: fuck")
+                    Log.d("Retrofit2", "onResponse: 400 fail")
                 }
             }
 
@@ -80,11 +77,6 @@ class SignUpStudentViewModel : ViewModel() {
             }
 
         })
-
-
-
-
-
 
         /* call.enqueue(object: Callback<SignUpResponse> {
             override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {

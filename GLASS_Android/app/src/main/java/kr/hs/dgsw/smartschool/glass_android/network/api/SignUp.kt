@@ -13,7 +13,8 @@ interface SignUp {
     @POST("join")
     fun signUp(@Body singUpRequest: SignUpRequest) : retrofit2.Call<SignUpResponse>
 
-    @GET("user/email-auth")
+    // 이메일 인증 보류
+    /*@GET("user/email-auth")
     fun sendEmail(@Query ("sendCount") sendCount: Int,
-    @Query ("message") message: String): retrofit2.Call<EmailResponse>
+    @Query ("message") message: String): retrofit2.Call<EmailResponse>*/
 }
