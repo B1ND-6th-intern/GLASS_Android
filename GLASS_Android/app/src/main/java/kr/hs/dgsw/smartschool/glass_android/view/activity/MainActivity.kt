@@ -9,17 +9,10 @@ import androidx.navigation.ui.setupWithNavController
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.MainViewModel
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivityMainBinding
-import kr.hs.dgsw.smartschool.glass_android.view.fragment.HomeFragment
-import kr.hs.dgsw.smartschool.glass_android.view.fragment.ProfileFragment
-import kr.hs.dgsw.smartschool.glass_android.view.fragment.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var mainViewModel: MainViewModel
-
-    private val homeFragment by lazy { HomeFragment() }
-    private val searchFragment by lazy { SearchFragment() }
-    private val profileFragment by lazy { ProfileFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

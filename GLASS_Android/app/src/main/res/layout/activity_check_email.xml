@@ -15,14 +15,15 @@
         tools:context=".view.activity.CheckEmailActivity">
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
             android:text="이메일의 인증번호를 확인해주세요!"
             android:textColor="@color/main"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +40,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="재전송하기"
+            android:layout_marginTop="25dp"
+            android:textSize="17sp"
+            android:textColor="@color/main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_check_email"

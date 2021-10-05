@@ -24,7 +24,8 @@
                 android:layout_height="50dp"
                 android:layout_margin="11dp"
                 android:backgroundTint="#BFBFBF"
-                android:src="@drawable/img_test"
+                android:src="@drawable/ic_iv_noimage"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +161,6 @@
                 app:layout_constraintStart_toEndOf="@id/tv_post_name"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <TextView
             android:id="@+id/tv_post_date"
