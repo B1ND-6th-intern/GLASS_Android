@@ -9,13 +9,20 @@ import androidx.databinding.DataBindingUtil
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.Post
+import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.setNavVisible(true)
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 

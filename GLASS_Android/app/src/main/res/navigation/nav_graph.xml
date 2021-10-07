@@ -11,44 +11,23 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/main_search" />
-        <action
-            android:id="@+id/action_main_home_to_main_profile"
-            app:destination="@id/main_profile" />
+            android:id="@+id/action_main_home_to_postFragment"
+            app:destination="@id/postFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/main_search"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_profileFragment"
-            app:destination="@id/main_profile" />
-        <action
-            android:id="@+id/action_main_search_to_main_home"
-            app:destination="@id/main_home" />
-    </fragment>
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/main_profile"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_main_profile_to_main_search"
-            app:destination="@id/main_search" />
-        <action
-            android:id="@+id/action_main_profile_to_main_home"
-            app:destination="@id/main_home" />
-    </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="kr.hs.dgsw.smartschool.glass_android.view.activity.LoginActivity"
-        android:label="LoginActivity" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity"
-        android:label="MainActivity" />
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.PostFragment"
+        android:label="PostFragment" />
 </navigation>

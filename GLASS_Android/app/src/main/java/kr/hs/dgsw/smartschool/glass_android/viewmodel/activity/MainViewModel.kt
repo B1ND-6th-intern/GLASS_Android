@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    val onClickTest = SingleLiveEvent<Unit>()
+    val onPostEvent = SingleLiveEvent<Unit>()
 
     val count = MutableLiveData<Int>(0)
 
-    fun onClickBtnTest() {
-        onClickTest.call()
+    fun onClickBtnPost() {
+        onPostEvent.call()
     }
 }
