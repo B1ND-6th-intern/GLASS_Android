@@ -8,7 +8,7 @@ class MainViewModel : ViewModel() {
 
     val onPostEvent = SingleLiveEvent<Unit>()
 
-    val count = MutableLiveData<Int>(0)
+//    val count = MutableLiveData<Int>(0)
 
     fun onClickBtnPost() {
         onPostEvent.call()

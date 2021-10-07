@@ -33,6 +33,11 @@ class HomeFragment : Fragment() {
             false
         )
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            initRecycler()
+            return@setOnRefreshListener
+        }
+
         initRecycler()
         return binding.root
     }

@@ -29,5 +29,12 @@
     <fragment
         android:id="@+id/postFragment"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.PostFragment"
-        android:label="PostFragment" />
+        android:label="PostFragment" >
+        <action
+            android:id="@+id/action_postFragment_to_main_home"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:destination="@id/main_home" />
+    </fragment>
 </navigation>
