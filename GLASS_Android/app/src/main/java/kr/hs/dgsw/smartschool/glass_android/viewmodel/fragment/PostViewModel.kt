@@ -5,6 +5,11 @@ import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 
 class PostViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
+    val onImageEvent = SingleLiveEvent<Unit>()
+
+    fun onClickBtnAddImage() {
+        onImageEvent.call()
+    }
 
     fun onClickBtnBack() {
         onBackEvent.call()

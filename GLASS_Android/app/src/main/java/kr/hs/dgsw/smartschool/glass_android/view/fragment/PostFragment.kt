@@ -1,6 +1,8 @@
 package kr.hs.dgsw.smartschool.glass_android.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +44,15 @@ class PostFragment : Fragment() {
         with(postViewModel) {
             onBackEvent.observe(this@PostFragment, {
                 findNavController().navigate(R.id.action_postFragment_to_main_home)
+            })
 
+            onImageEvent.observe(this@PostFragment, {
+                var intent = Intent(Intent.ACTION_PICK)
+                intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                intent.action = Intent.ACTION_GET_CONTENT
+
+                startActivityForResult(intent, 200)
             })
         }
         return binding.root
