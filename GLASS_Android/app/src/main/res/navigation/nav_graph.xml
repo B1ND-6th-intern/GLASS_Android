@@ -23,9 +23,6 @@
         <action
             android:id="@+id/action_main_search_to_realSearchFragment"
             app:destination="@id/realSearchFragment" />
-        <action
-            android:id="@+id/action_main_search_to_postFragment"
-            app:destination="@id/postFragment" />
     </fragment>
 
     <fragment

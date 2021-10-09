@@ -22,7 +22,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? MainActivity)?.setNavVisible(true)
+        (activity as? MainActivity)?.setAppBarVisible(true)
     }
 
     override fun onCreateView(
