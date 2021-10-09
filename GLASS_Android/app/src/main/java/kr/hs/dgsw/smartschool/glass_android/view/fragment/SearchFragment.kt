@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentSearchBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.PopularPost
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.PopularPostRecyclerAdapter
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.SearchViewModel
 
 class SearchFragment : Fragment() {
     lateinit var binding: FragmentSearchBinding
+    lateinit var searchViewModel: SearchViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,8 +37,23 @@ class SearchFragment : Fragment() {
             false
         )
 
+        performViewModel()
         initRecycler()
+
+        with(searchViewModel) {
+            onSearchEvent.observe(this@SearchFragment, {
+                findNavController().apply { navigate(R.id.action_main_search_to_realSearchFragment) }
+            })
+        }
+
         return binding.root
+    }
+
+    private fun performViewModel() {
+        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        binding.vm = searchViewModel
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
     }
 
     private fun initRecycler() {
