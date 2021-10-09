@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentSearchUserBinding
+import kr.hs.dgsw.smartschool.glass_android.network.model.SearchUser
+import kr.hs.dgsw.smartschool.glass_android.view.adapter.SearchUserRecyclerAdapter
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.SearchUserViewModel
 
 class SearchUserFragment : Fragment() {
@@ -27,14 +29,30 @@ class SearchUserFragment : Fragment() {
             false
         )
 
+        initRecycler()
+
         binding.editSearchUser.setOnKeyListener { _, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                Toast.makeText(context, "검색입니다!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "사용자 검색입니다!", Toast.LENGTH_SHORT).show()
                 true
             } else {
                 false
             }
         }
         return binding.root
+    }
+
+    private fun initRecycler() {
+        val searchUserList = ArrayList<SearchUser>()
+        val searchUserRecyclerAdapter = SearchUserRecyclerAdapter(viewLifecycleOwner)
+        binding.searchUserRecycler.adapter = searchUserRecyclerAdapter
+
+        searchUserList.apply {
+            add(SearchUser("https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg", "1320 최민재", "안늉"))
+            add(SearchUser("https://image.msscdn.net/data/curating/16948/16948_1_org.jpg", "교직원 이광남", "턱이 정말 깁니다."))
+            add(SearchUser("https://img.hankyung.com/photo/201807/01.17324227.1.jpg", "학부모 우준성", "경태 조련사입니다"))
+        }
+        searchUserRecyclerAdapter.searchUserList = searchUserList
+        searchUserRecyclerAdapter.notifyDataSetChanged()
     }
 }

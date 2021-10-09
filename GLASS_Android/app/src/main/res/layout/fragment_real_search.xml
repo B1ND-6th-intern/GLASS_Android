@@ -32,29 +32,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/edit_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_search"
-                android:hint="사용자를 검색해주세요"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textSize="15sp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_back_search"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/search_tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             app:tabIndicatorColor="@color/main"
             app:tabSelectedTextColor="@color/main"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,8 +60,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_tab">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.SearchUserFragment"/>
         </FrameLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
