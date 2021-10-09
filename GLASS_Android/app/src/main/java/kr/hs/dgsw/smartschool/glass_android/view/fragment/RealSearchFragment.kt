@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayout
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentRealSearchBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
@@ -35,12 +36,29 @@ class RealSearchFragment : Fragment() {
         )
         performViewModel()
 
+        val firstTransaction = childFragmentManager.beginTransaction()
+        firstTransaction.replace(R.id.search_tap_content, SearchUserFragment())
+
         with(realSearchViewModel) {
             onBackSearchEvent.observe(this@RealSearchFragment, {
                 findNavController().apply { navigate(R.id.action_realSearchFragment_to_main_search) }
             })
         }
 
+        binding.searchTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val transaction = childFragmentManager.beginTransaction()
+                when (tab?.text) {
+                    "사용자"->transaction.replace(R.id.search_tap_content, SearchUserFragment())
+                    "태그"->transaction.replace(R.id.search_tap_content, SearchTagFragment())
+                }
+                transaction.commit()
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+        })
         return binding.root
     }
 
