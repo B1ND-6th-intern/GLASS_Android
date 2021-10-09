@@ -36,9 +36,6 @@ class RealSearchFragment : Fragment() {
         )
         performViewModel()
 
-        val firstTransaction = childFragmentManager.beginTransaction()
-        firstTransaction.replace(R.id.search_tap_content, SearchUserFragment())
-
         with(realSearchViewModel) {
             onBackSearchEvent.observe(this@RealSearchFragment, {
                 findNavController().apply { navigate(R.id.action_realSearchFragment_to_main_search) }
@@ -49,8 +46,14 @@ class RealSearchFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = childFragmentManager.beginTransaction()
                 when (tab?.text) {
-                    "사용자"->transaction.replace(R.id.search_tap_content, SearchUserFragment())
-                    "태그"->transaction.replace(R.id.search_tap_content, SearchTagFragment())
+                    "사용자" -> {
+                        transaction.replace(R.id.search_tap_content, SearchUserFragment())
+                        binding.editSearch.hint = "사용자를 검색해주세요"
+                    }
+                    "태그" -> {
+                        transaction.replace(R.id.search_tap_content, SearchTagFragment())
+                        binding.editSearch.hint = "태그를 검색해주세요"
+                    }
                 }
                 transaction.commit()
             }

@@ -7,7 +7,7 @@
     <solid
         android:color="#DDDDDD" />
     <size
-        android:height="50dp" />
+        android:height="35dp" />
     <padding
         android:left="10dp"/>
 

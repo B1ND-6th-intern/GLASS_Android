@@ -32,14 +32,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edit_search"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edit_search"
+                android:hint="사용자를 검색해주세요"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="검색"
-                android:textColor="@color/black"
-                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_back_search"
                 app:layout_constraintTop_toTopOf="parent" />
 
