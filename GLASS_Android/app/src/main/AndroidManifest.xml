@@ -8,46 +8,50 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_logo_re"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo_re"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GLASS_Android">
-
+        android:theme="@style/Theme.GLASS_Android"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.activity.CheckEmailActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name=".view.activity.SignUpStudentActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name=".view.activity.SelectJobActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name=".view.activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
-
-        </activity>
-        <activity android:name=".view.activity.MainActivity" >
+            android:name=".view.activity.InActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.activity.CheckEmailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SignUpStudentActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SelectJobActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".view.activity.MainActivity">
+
+        </activity>
 
         <provider
-            android:authorities="kr.hs.dgsw.smartschool.glass_android.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="kr.hs.dgsw.smartschool.glass_android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"> </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
 
