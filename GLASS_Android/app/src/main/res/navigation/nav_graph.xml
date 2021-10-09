@@ -19,7 +19,11 @@
         android:id="@+id/main_search"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_main_search_to_realSearchFragment"
+            app:destination="@id/realSearchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/main_profile"
@@ -36,5 +40,15 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:destination="@id/main_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/realSearchFragment"
+        android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.RealSearchFragment"
+        android:label="RealSearchFragment" >
+        <action
+            android:id="@+id/action_realSearchFragment_to_main_search"
+            app:destination="@id/main_search"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

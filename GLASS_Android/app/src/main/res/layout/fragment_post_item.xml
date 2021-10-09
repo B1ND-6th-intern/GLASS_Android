@@ -24,7 +24,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="11dp"
                 android:backgroundTint="#BFBFBF"
-                android:src="@drawable/ic_iv_noimage"
+                android:src="@drawable/ic_img_profile"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"

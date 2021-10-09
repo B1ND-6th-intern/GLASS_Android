@@ -52,4 +52,9 @@ class MainActivity : AppCompatActivity() {
         binding.appbarHome.visibility = if(isMainFragment) View.VISIBLE else View.GONE
         binding.bnvMain.visibility = if(isMainFragment) View.VISIBLE else View.GONE
     }
+
+    fun setAppBarVisible(isSearchFragment: Boolean) {
+        binding.appbarHome.visibility = if(isSearchFragment) View.GONE else View.VISIBLE
+        binding.bnvMain.visibility = if (isSearchFragment) View.VISIBLE else View.VISIBLE
+    }
 }
