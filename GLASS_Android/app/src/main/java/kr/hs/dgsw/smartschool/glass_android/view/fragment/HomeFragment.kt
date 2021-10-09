@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
             add(Post("asafj", "1421 손원", "14"))
             add(Post("https://images.chosun.com/resizer/HoGaPo0K-HNh_w9wmkUxpt404rc=/616x0/filters:focal(291x444:301x454)/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/XG2MW2H3ZRW5FHDVSOMF6FDT3E.jpg", "1555 남궁경헌", "256"))
         }
-        homeRecyclerAdapter.recyclerPostList = postList as ArrayList<Post>
+        homeRecyclerAdapter.recyclerPostList = postList
         homeRecyclerAdapter.notifyDataSetChanged()
     }
 }
