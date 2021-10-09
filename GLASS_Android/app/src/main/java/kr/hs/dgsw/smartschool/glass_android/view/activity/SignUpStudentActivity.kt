@@ -18,8 +18,6 @@ class SignUpStudentActivity : AppCompatActivity() {
     lateinit var binding : ActivitySignUpStudentBinding
     lateinit var signUpStudentViewModel : SignUpStudentViewModel
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         performDataBinding()

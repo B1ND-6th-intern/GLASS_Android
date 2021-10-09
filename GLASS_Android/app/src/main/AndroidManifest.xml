@@ -3,6 +3,7 @@
     package="kr.hs.dgsw.smartschool.glass_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -29,13 +30,25 @@
             android:name=".view.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true">
+
+        </activity>
+        <activity android:name=".view.activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.MainActivity" />
+
+        <provider
+            android:authorities="kr.hs.dgsw.smartschool.glass_android.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"> </meta-data>
+        </provider>
     </application>
 
 </manifest>

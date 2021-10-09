@@ -59,7 +59,6 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
                     add(PostImg("https://news.imaeil.com/inc/photos/2020/08/31/2020083115381755161_l.jpg"))
                     add(PostImg("https://upload3.inven.co.kr/upload/2021/01/19/bbs/i14096652616.jpg"))
                 }
-
                 var adapter = PostedImgAdapter(postImgList)
                 binding.viewPagerPost.orientation= ViewPager2.ORIENTATION_HORIZONTAL
                 binding.viewPagerPost.adapter = adapter

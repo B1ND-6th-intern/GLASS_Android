@@ -15,6 +15,7 @@ import retrofit2.Response
 class SignUpStudentViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
+
     // val onEmailEvent = SingleLiveEvent<Unit>()
 
    /* val sendCount: Int = 0
@@ -30,8 +31,8 @@ class SignUpStudentViewModel : ViewModel() {
     val password2 = MutableLiveData<String>()
     val isAgree = MutableLiveData<Boolean>(false)
 
-    fun onClickSignUp() {
 
+    fun onClickSignUp() {
 
         val signUpRequest = SignUpRequest(
                 password.value ?: "",

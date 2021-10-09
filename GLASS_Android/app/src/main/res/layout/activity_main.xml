@@ -50,6 +50,7 @@
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_marginRight="20dp"
+                android:onClick="@{() -> vm.onClickBtnPost()}"
                 android:background="@drawable/btn_posting"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_alarm"
