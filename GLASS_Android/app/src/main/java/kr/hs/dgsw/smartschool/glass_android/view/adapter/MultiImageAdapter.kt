@@ -31,10 +31,6 @@ class MultiImageAdapter(val lifecycleOwner: LifecycleOwner) :
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(items[position])
-        /*val item = items[position]
-        Glide.with().load(item)
-            .override(500, 500)
-            .into(holder.image)*/
     }
 
     override fun getItemCount(): Int = items.size
@@ -45,7 +41,7 @@ class MultiImageAdapter(val lifecycleOwner: LifecycleOwner) :
                 Glide.with(binding.root)
                     .load(exImages)
                     .error(R.drawable.ic_iv_noimage)
-                    .override(500, 500)
+                    .centerCrop()
                     .into(binding.ivExImage)
             }
 
