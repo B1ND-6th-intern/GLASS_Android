@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.ProfilePost
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.ProfilePostRecyclerAdapter
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.EditProfileViewModel
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.ProfileViewModel
 
 class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
+    lateinit var profileViewModel: ProfileViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +36,22 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
+        performViewModel()
         initRecycler()
+
+        with(profileViewModel) {
+            onEditProfileEvent.observe(this@ProfileFragment, {
+                findNavController().navigate(R.id.action_main_profile_to_editProfileFragment)
+            })
+        }
         return binding.root
+    }
+
+    private fun performViewModel() {
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        binding.vm = profileViewModel
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
     }
 
     private fun initRecycler() {

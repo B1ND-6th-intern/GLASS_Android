@@ -29,7 +29,15 @@ class MainActivity : AppCompatActivity() {
                      navigate(R.id.action_main_home_to_postFragment)
                  }
             })
+
+            onSettingEvent.observe(this@MainActivity, {
+                findNavController(R.id.nav_host_fragment).apply {
+                    navigate(R.id.action_main_profile_to_settingFragment)
+                }
+            })
         }
+
+        binding.bnvMain.itemIconTintList = null
     }
 
     private fun performDataBinding() {

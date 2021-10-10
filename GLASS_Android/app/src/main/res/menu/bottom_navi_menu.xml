@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/main_home"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"
         android:icon="@drawable/ic_btn_home"
         android:title="" />
 
     <item
         android:id="@+id/main_search"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"
         android:icon="@drawable/ic_btn_search"
         android:title=""
@@ -19,8 +19,8 @@
 
     <item
         android:id="@+id/main_profile"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/img_test"
+        android:icon="@drawable/ic_img_profile"
         android:title=""/>
 </menu>
