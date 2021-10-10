@@ -18,6 +18,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setNavVisible(true)
+        (activity as? MainActivity)?.binding?.btnSetting?.visibility = View.GONE
     }
 
     override fun onCreateView(
@@ -25,7 +26,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater,
             R.layout.fragment_home,
