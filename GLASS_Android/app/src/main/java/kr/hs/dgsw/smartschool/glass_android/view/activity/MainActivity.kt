@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+
+        binding.bnvMain.itemIconTintList = null
     }
 
     private fun performDataBinding() {
