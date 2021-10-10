@@ -7,13 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentEditProfileBinding
+import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.EditProfileViewModel
 
 class EditProfileFragment : Fragment() {
     lateinit var binding: FragmentEditProfileBinding
     lateinit var editProfileViewModel: EditProfileViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.setNavVisible(false)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +34,15 @@ class EditProfileFragment : Fragment() {
         )
         performViewModel()
 
+        with(editProfileViewModel) {
+            onBackProfileEvent.observe(this@EditProfileFragment, {
+                findNavController().navigate(R.id.action_editProfileFragment_to_main_profile)
+            })
+
+            onEditCheckEvent.observe(this@EditProfileFragment, {
+                findNavController().navigate(R.id.action_editProfileFragment_to_main_profile)
+            })
+        }
 
         return binding.root
     }
