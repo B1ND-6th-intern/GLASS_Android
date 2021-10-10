@@ -47,14 +47,24 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <fragment
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            class="kr.hs.dgsw.smartschool.glass_android.view.fragment.MainSettingFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+
+            <fragment
+                android:id="@+id/fragment"
+                class="kr.hs.dgsw.smartschool.glass_android.view.fragment.MainSettingFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

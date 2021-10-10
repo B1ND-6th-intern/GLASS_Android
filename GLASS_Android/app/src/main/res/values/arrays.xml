@@ -5,4 +5,9 @@
         <item>학부모</item>
         <item>선생님</item>
     </string-array>
+    <string-array name="permission">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

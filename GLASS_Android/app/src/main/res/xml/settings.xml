@@ -6,6 +6,7 @@
         app:title="개인 설정" >
         <ListPreference
             android:entries="@array/my_job"
+            android:entryValues="@array/permission"
             app:key="job"
             app:title="직업 선택" />
         <EditTextPreference
