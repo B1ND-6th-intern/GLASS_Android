@@ -42,7 +42,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/btn_heart_w"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_setting"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
@@ -55,6 +55,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_alarm"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_setting"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginRight="20dp"
+                android:visibility="gone"
+                android:background="@drawable/ic_btn_setting"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
