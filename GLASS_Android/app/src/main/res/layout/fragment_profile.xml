@@ -153,6 +153,8 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="20dp"
             android:background="#BFBFBF"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             tools:layout_editor_absoluteX="10dp" />
 
@@ -164,7 +166,7 @@
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:spanCount="3"
-            tools:listitem="@layout/item_post_image"
+            tools:listitem="@layout/item_profile_post"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
