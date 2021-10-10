@@ -7,10 +7,15 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
 
     val onPostEvent = SingleLiveEvent<Unit>()
+    val onSettingEvent = SingleLiveEvent<Unit>()
 
 //    val count = MutableLiveData<Int>(0)
 
     fun onClickBtnPost() {
         onPostEvent.call()
+    }
+
+    fun onClickBtnSetting() {
+        onSettingEvent.call()
     }
 }
