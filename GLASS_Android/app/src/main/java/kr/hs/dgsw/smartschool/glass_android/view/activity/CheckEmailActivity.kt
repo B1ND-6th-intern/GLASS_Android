@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.glass_android.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
@@ -25,6 +26,9 @@ class CheckEmailActivity : AppCompatActivity() {
             onCheckEvent.observe(this@CheckEmailActivity, {
                 val intent = Intent(this@CheckEmailActivity, LoginActivity::class.java)
                 startActivity(intent)
+            })
+            onResendEmailEvent.observe(this@CheckEmailActivity, {
+                Toast.makeText(this@CheckEmailActivity, "재전송 되었습니다!", Toast.LENGTH_SHORT).show()
             })
         }
     }
