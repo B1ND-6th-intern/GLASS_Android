@@ -25,17 +25,18 @@ class SignUpStudentActivity : AppCompatActivity() {
         with(signUpStudentViewModel) {
             onSignUpEvent.observe(this@SignUpStudentActivity, {
                 if(binding.checkboxPrivateInfo.isChecked) {
-                    val intent = Intent(this@SignUpStudentActivity, LoginActivity::class.java)
+                    val intent = Intent(this@SignUpStudentActivity, CheckEmailActivity::class.java)
                     startActivity(intent)
                     Toast.makeText(this@SignUpStudentActivity, "회원가입 성공!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@SignUpStudentActivity, "개인정보를 수락해주세요!", Toast.LENGTH_SHORT).show()
                 }
             })
-            // 이메일 인증 보류
-//            onEmailEvent.observe(this@SignUpStudentActivity, {
-//                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-//            })
+
+
+            onEmailEvent.observe(this@SignUpStudentActivity, {
+                Toast.makeText(applicationContext, "재전송 횟수는 총 $sendCount 회 남았습니다", Toast.LENGTH_SHORT).show()
+            })
 
             onBackSelectEvent.observe(this@SignUpStudentActivity, {
                 finish()

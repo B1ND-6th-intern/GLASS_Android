@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.Post
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.HomeViewModel
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
+    lateinit var homeViewModel: HomeViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +35,7 @@ class HomeFragment : Fragment() {
             container,
             false
         )
-
+        performViewModel()
 //        binding.swipeRefreshLayout.setOnRefreshListener {
 //            initRecycler()
 //            return@setOnRefreshListener
@@ -40,6 +43,13 @@ class HomeFragment : Fragment() {
 
         initRecycler()
         return binding.root
+    }
+
+    private fun performViewModel() {
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        binding.vm = homeViewModel
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
     }
 
     private fun initRecycler() {
