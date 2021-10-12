@@ -18,7 +18,7 @@ class SignUpStudentViewModel : ViewModel() {
 
     val onEmailEvent = SingleLiveEvent<Unit>()
 
-    val sendCount: Int = 0
+    var sendCount: Int = 6
     val message: String = ""
 
 
@@ -58,6 +58,7 @@ class SignUpStudentViewModel : ViewModel() {
                         override fun onResponse(emailCall: Call<EmailResponse>, emailResponse: Response<EmailResponse>) {
                             if (emailResponse.isSuccessful) {
                                 onEmailEvent.call()
+                                sendCount -= 1
                             } else {
                                 Log.d("Retrofit2", "onResponse: oh no")
                             }
