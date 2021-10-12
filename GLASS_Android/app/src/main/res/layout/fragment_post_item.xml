@@ -22,7 +22,7 @@
                 android:id="@+id/iv_user_profile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="11dp"
+                android:layout_margin="5dp"
                 android:backgroundTint="#BFBFBF"
                 android:src="@drawable/ic_img_profile"
                 android:adjustViewBounds="true"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
                 android:layout_marginLeft="18dp"
-                android:onClick="@{() -> vm.onClickLike()}"
+                android:onClick="@{() -> vm.onClickBtnHeart()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -182,6 +182,6 @@
             android:layout_marginLeft="18dp"
             android:textColor="#868686"
             android:text="2일 전"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="7dp" />
     </LinearLayout>
 </layout>

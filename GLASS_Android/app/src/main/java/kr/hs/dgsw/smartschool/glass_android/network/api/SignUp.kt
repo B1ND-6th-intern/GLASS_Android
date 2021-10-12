@@ -14,7 +14,6 @@ interface SignUp {
     fun signUp(@Body singUpRequest: SignUpRequest) : retrofit2.Call<SignUpResponse>
 
     // 이메일 인증 보류
-    /*@GET("user/email-auth")
-    fun sendEmail(@Query ("sendCount") sendCount: Int,
-    @Query ("message") message: String): retrofit2.Call<EmailResponse>*/
+    @GET("users/email-auth")
+    fun sendEmail() : Call<EmailResponse>
 }

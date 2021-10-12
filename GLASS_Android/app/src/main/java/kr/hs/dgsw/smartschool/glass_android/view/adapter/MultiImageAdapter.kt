@@ -43,6 +43,7 @@ class MultiImageAdapter(val lifecycleOwner: LifecycleOwner) :
                     .error(R.drawable.ic_iv_noimage)
                     .centerCrop()
                     .into(binding.ivExImage)
+
             }
 
         }

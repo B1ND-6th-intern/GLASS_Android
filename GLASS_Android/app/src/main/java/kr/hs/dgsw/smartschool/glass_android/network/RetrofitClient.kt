@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     //private const val BASE_URL = "http://10.80.162.123:8080/"     // 준호
-    private const val BASE_URL = "http://10.80.163.231:8080/"       // 준성
+    private const val BASE_URL = "http://10.80.161.63:8080/"       // 준성
     val loginInterface: Login
     val signUpInterface: SignUp
 

@@ -16,10 +16,10 @@ class SignUpStudentViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
 
-    // val onEmailEvent = SingleLiveEvent<Unit>()
+    val onEmailEvent = SingleLiveEvent<Unit>()
 
-   /* val sendCount: Int = 0
-    val message: String = ""*/
+    val sendCount: Int = 0
+    val message: String = ""
 
 
     val name = MutableLiveData<String>()
@@ -45,7 +45,7 @@ class SignUpStudentViewModel : ViewModel() {
                 classNumber.value!!.toInt(),
                 stuNumber.value!!.toInt()
         )
-        // val emailResponse = RetrofitClient.signUpInterface.sendEmail(sendCount, message)
+        val emailResponse = RetrofitClient.signUpInterface.sendEmail()
 
         RetrofitClient.signUpInterface.signUp(signUpRequest).enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
@@ -54,7 +54,7 @@ class SignUpStudentViewModel : ViewModel() {
                     onSignUpEvent.call()
 
                     // Email 보내기
-                    /*emailResponse.enqueue(object : Callback<EmailResponse> {
+                    emailResponse.enqueue(object : Callback<EmailResponse> {
                         override fun onResponse(emailCall: Call<EmailResponse>, emailResponse: Response<EmailResponse>) {
                             if (emailResponse.isSuccessful) {
                                 onEmailEvent.call()
@@ -66,7 +66,7 @@ class SignUpStudentViewModel : ViewModel() {
                         override fun onFailure(emailCall: Call<EmailResponse>, t: Throwable) {
                             Log.d("Retrofit2", "onFailure: $t")
                         }
-                    })*/
+                    })
 
                 } else {
                     Log.d("Retrofit2", "onResponse: 400 fail")
@@ -78,20 +78,6 @@ class SignUpStudentViewModel : ViewModel() {
             }
 
         })
-
-        /* call.enqueue(object: Callback<SignUpResponse> {
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                if (response.isSuccessful) {
-                    val data = response.body()
-                    Log.d("Retrofit2", "onResponse: 회원가입 성공!")
-                    onSignUpEvent.call()
-                }
-            }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.d("Retrofit2", "onFailure: $t")
-            }
-        }) */
     }
 
     fun onClickBackSelect() {

@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 
 class MainPostItemViewModel : ViewModel() {
-    val onLikeEvent = SingleLiveEvent<Unit>()
+    val onHeartEvent = SingleLiveEvent<Unit>()
     val onCommentEvent = SingleLiveEvent<Unit>()
 
-    fun onClickLike() {
-        onLikeEvent.call()
+    fun onClickBtnHeart() {
+        onHeartEvent.call()
     }
 
     fun onCommentEvent() {
