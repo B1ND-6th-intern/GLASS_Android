@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_signup"
             android:gravity="center"
+            android:text="@={vm.confirm}"
             android:hint="인증번호 4자리"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"

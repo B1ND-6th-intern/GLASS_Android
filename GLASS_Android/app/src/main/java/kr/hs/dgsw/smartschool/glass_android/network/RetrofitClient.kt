@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.glass_android.network
 
 import com.google.gson.GsonBuilder
+import kr.hs.dgsw.smartschool.glass_android.network.api.Confirm
 import kr.hs.dgsw.smartschool.glass_android.network.api.Login
 import kr.hs.dgsw.smartschool.glass_android.network.api.SignUp
 import okhttp3.OkHttpClient
@@ -14,6 +15,7 @@ object RetrofitClient {
     private const val BASE_URL = "http://10.80.161.63:8080/"       // 준성
     val loginInterface: Login
     val signUpInterface: SignUp
+    val confirmInterface: Confirm
 
     init {
         val gson = GsonBuilder().setLenient().create()
@@ -34,5 +36,6 @@ object RetrofitClient {
 
         loginInterface = instance.create(Login::class.java)
         signUpInterface = instance.create(SignUp::class.java)
+        confirmInterface = instance.create(Confirm::class.java)
     }
 }
