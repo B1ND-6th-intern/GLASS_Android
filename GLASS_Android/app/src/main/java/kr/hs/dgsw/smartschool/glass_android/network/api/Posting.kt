@@ -13,7 +13,7 @@ import retrofit2.http.Part
 interface Posting {
     @Multipart
     @POST("writings/upload/imgs")
-    fun firstPosting(@Part file: List<MultipartBody.Part>) : retrofit2.Call<FirstPostingResponse>
+    fun firstPosting(@Part images: List<MultipartBody.Part>) : retrofit2.Call<FirstPostingResponse>
 
     @POST("writings/upload")
     fun secondPosting(@Body secondPostingRequest: SecondPostingRequest) : retrofit2.Call<SecondPostingResponse>

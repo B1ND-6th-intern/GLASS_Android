@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
+import kr.hs.dgsw.smartschool.glass_android.network.request.SecondPostingRequest
 import kr.hs.dgsw.smartschool.glass_android.network.response.FirstPostingResponse
+import kr.hs.dgsw.smartschool.glass_android.network.response.SecondPostingResponse
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -19,9 +22,13 @@ class PostViewModel: ViewModel() {
     val onImageEvent = SingleLiveEvent<Unit>()
     val onPostEvent = SingleLiveEvent<Unit>()
 
-
-
+    // first
     var images = MutableLiveData<ArrayList<File>>(arrayListOf())
+
+
+    // second
+    val contentText = MutableLiveData<String>()
+    val hashTag = MutableLiveData<String>()
 
     fun onClickBtnAddImage() {
         onImageEvent.call()
@@ -30,9 +37,9 @@ class PostViewModel: ViewModel() {
     fun onClickBtnPost() {
         val firstCall = RetrofitClient.postingInterface.firstPosting(
             images.value?.map { MultipartBody.Part.createFormData(
-                "file",
+                "images",
                 it.name,
-                RequestBody.create(MediaType.parse("jpg"), it)
+                RequestBody.create("image/${it.name.split(".")[1]}".toMediaTypeOrNull(), it)
             )} ?: listOf()
         )
 
@@ -54,10 +61,27 @@ class PostViewModel: ViewModel() {
 
         })
 
-//        val secondCall = RetrofitClient.postingInterface.secondPosting(
-//
-//        )
-        onPostEvent.call()
+        val secondCall = RetrofitClient.postingInterface.secondPosting(
+            SecondPostingRequest(contentText.value?: "", hashTag.value?:"", "https://image.msscdn.net/data/curating/16948/16948_1_org.jpg")
+        )
+        secondCall.enqueue(object : Callback<SecondPostingResponse> {
+            override fun onResponse(
+                call: Call<SecondPostingResponse>,
+                response: Response<SecondPostingResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("Retrofit2", "onResponse: 성공")
+                    onPostEvent.call()
+                } else {
+                    Log.d("Retrofit2", "onResponse: fuck")
+                }
+            }
+
+            override fun onFailure(call: Call<SecondPostingResponse>, t: Throwable) {
+                Log.d("Retrofit2", "onFailure: $t")
+            }
+
+        })
     }
 
     fun onClickBtnBack() {

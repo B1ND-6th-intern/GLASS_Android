@@ -73,6 +73,7 @@
                 android:id="@+id/edit_content"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
+                android:text="@={vm.contentText}"
                 android:inputType="textMultiLine"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
@@ -151,6 +152,7 @@
 
         <EditText
             android:id="@+id/editText2"
+            android:text="@={vm.hashTag}"
             android:inputType="textMultiLine"
             android:scrollHorizontally="false"
             android:maxLength="50"
