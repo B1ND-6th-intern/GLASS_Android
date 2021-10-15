@@ -29,7 +29,6 @@ class LoginViewModel : ViewModel() {
                 } else {
                     Log.d("Retrofit2", "연결 실패")
                 }
-
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
