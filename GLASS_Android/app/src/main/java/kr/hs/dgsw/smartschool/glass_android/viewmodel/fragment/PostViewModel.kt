@@ -37,7 +37,7 @@ class PostViewModel: ViewModel() {
     fun onClickBtnPost() {
         val firstCall = RetrofitClient.postingInterface.firstPosting(
             images.value?.map { MultipartBody.Part.createFormData(
-                "images",
+                "img",
                 it.name,
                 RequestBody.create("image/${it.name.split(".")[1]}".toMediaTypeOrNull(), it)
             )} ?: listOf()
@@ -50,34 +50,35 @@ class PostViewModel: ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     Log.d("Retrofit2", "onResponse: 이미지 포스팅 성공")
+
+                    val secondCall = RetrofitClient.postingInterface.secondPosting(
+                        SecondPostingRequest(contentText.value?: "", hashTag.value?:"", response.body()?.images ?: listOf())
+                    )
+                    secondCall.enqueue(object : Callback<SecondPostingResponse> {
+                        override fun onResponse(
+                            secondCall: Call<SecondPostingResponse>,
+                            secondResponse: Response<SecondPostingResponse>
+                        ) {
+                            if (secondResponse.isSuccessful) {
+                                Log.d("Retrofit2", "onResponse: 성공")
+                                onPostEvent.call()
+                            } else {
+                                Log.d("Retrofit2", "onResponse: fuck")
+                            }
+                        }
+
+                        override fun onFailure(seconCall: Call<SecondPostingResponse>, secondT: Throwable) {
+                            Log.d("Retrofit2", "onFailure: $secondT")
+                        }
+
+                    })
+
                 } else {
-                    Log.d("Retrofit2", "onResponse: 실패 400")
+                    Log.d("Retrofit2", "onResponse: 실패 400 ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<FirstPostingResponse>, t: Throwable) {
-                Log.d("Retrofit2", "onFailure: $t")
-            }
-
-        })
-
-        val secondCall = RetrofitClient.postingInterface.secondPosting(
-            SecondPostingRequest(contentText.value?: "", hashTag.value?:"", "https://image.msscdn.net/data/curating/16948/16948_1_org.jpg")
-        )
-        secondCall.enqueue(object : Callback<SecondPostingResponse> {
-            override fun onResponse(
-                call: Call<SecondPostingResponse>,
-                response: Response<SecondPostingResponse>
-            ) {
-                if (response.isSuccessful) {
-                    Log.d("Retrofit2", "onResponse: 성공")
-                    onPostEvent.call()
-                } else {
-                    Log.d("Retrofit2", "onResponse: fuck")
-                }
-            }
-
-            override fun onFailure(call: Call<SecondPostingResponse>, t: Throwable) {
                 Log.d("Retrofit2", "onFailure: $t")
             }
 
