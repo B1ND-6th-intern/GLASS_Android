@@ -19,6 +19,8 @@ class PostViewModel: ViewModel() {
     val onImageEvent = SingleLiveEvent<Unit>()
     val onPostEvent = SingleLiveEvent<Unit>()
 
+
+
     var images = MutableLiveData<ArrayList<File>>(arrayListOf())
 
     fun onClickBtnAddImage() {
@@ -31,12 +33,6 @@ class PostViewModel: ViewModel() {
                 "file",
                 it.name,
                 RequestBody.create(MediaType.parse("jpg"), it)
-
-//                        MultipartBody.Part.createFormData(
-//                        "files",
-//                file.name,
-//                RequestBody.create("image/${file.name.split(".")[1]}".toMediaTypeOrNull(), file)
-//            )
             )} ?: listOf()
         )
 
@@ -57,6 +53,10 @@ class PostViewModel: ViewModel() {
             }
 
         })
+
+//        val secondCall = RetrofitClient.postingInterface.secondPosting(
+//
+//        )
         onPostEvent.call()
     }
 
