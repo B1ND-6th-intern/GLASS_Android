@@ -15,6 +15,7 @@ import retrofit2.Response
 class SignUpStudentViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
+    val onEmptyEvent = SingleLiveEvent<Unit>()
 
     val onEmailEvent = SingleLiveEvent<Unit>()
 
@@ -33,52 +34,65 @@ class SignUpStudentViewModel : ViewModel() {
 
 
     fun onClickSignUp() {
+        if(password.value != null && password2.value != null && email.value != null && name.value != null && grade.value != null && classNumber.value != null && stuNumber.value != null) {
+            val signUpRequest = SignUpRequest(
+                    password.value ?: "",
+                    password2.value ?: "",
+                    email.value ?: "",
+                    name.value ?: "",
+                    0,
+                    isAgree.value!!,
+                    grade.value!!.toInt(),
+                    classNumber.value!!.toInt(),
+                    stuNumber.value!!.toInt()
+            )
+            val emailResponse = RetrofitClient.signUpInterface.sendEmail()
 
-        val signUpRequest = SignUpRequest(
-                password.value ?: "",
-                password2.value ?: "",
-                email.value ?: "",
-                name.value ?: "",
-                0,
-                isAgree.value!!,
-                grade.value!!.toInt(),
-                classNumber.value!!.toInt(),
-                stuNumber.value!!.toInt()
-        )
-        val emailResponse = RetrofitClient.signUpInterface.sendEmail()
+            RetrofitClient.signUpInterface.signUp(signUpRequest)
+                .enqueue(object : Callback<SignUpResponse> {
+                    override fun onResponse(
+                        call: Call<SignUpResponse>,
+                        response: Response<SignUpResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.d("Retrofit2", "onResponse : 회원가입 성공")
+                            onSignUpEvent.call()
 
-        RetrofitClient.signUpInterface.signUp(signUpRequest).enqueue(object : Callback<SignUpResponse> {
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                if(response.isSuccessful) {
-                    Log.d("Retrofit2", "onResponse : 회원가입 성공")
-                    onSignUpEvent.call()
+                            // Email 보내기
+                            emailResponse.enqueue(object : Callback<EmailResponse> {
+                                override fun onResponse(
+                                    emailCall: Call<EmailResponse>,
+                                    emailResponse: Response<EmailResponse>
+                                ) {
+                                    if (emailResponse.isSuccessful) {
+                                        onEmailEvent.call()
+                                        sendCount -= 1
+                                    } else {
+                                        Log.d("Retrofit2", "onResponse: oh no")
+                                    }
+                                }
 
-                    // Email 보내기
-                    emailResponse.enqueue(object : Callback<EmailResponse> {
-                        override fun onResponse(emailCall: Call<EmailResponse>, emailResponse: Response<EmailResponse>) {
-                            if (emailResponse.isSuccessful) {
-                                onEmailEvent.call()
-                                sendCount -= 1
-                            } else {
-                                Log.d("Retrofit2", "onResponse: oh no")
-                            }
+                                override fun onFailure(
+                                    emailCall: Call<EmailResponse>,
+                                    t: Throwable
+                                ) {
+                                    Log.d("Retrofit2", "onFailure: $t")
+                                }
+                            })
+
+                        } else {
+                            Log.d("Retrofit2", "onResponse: 400 fail")
                         }
+                    }
 
-                        override fun onFailure(emailCall: Call<EmailResponse>, t: Throwable) {
-                            Log.d("Retrofit2", "onFailure: $t")
-                        }
-                    })
+                    override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                        Log.d("Retrofit2", "onFailure: $t")
+                    }
 
-                } else {
-                    Log.d("Retrofit2", "onResponse: 400 fail")
-                }
-            }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable){
-                Log.d("Retrofit2", "onFailure: $t")
-            }
-
-        })
+                })
+        } else {
+            onEmptyEvent.call()
+        }
     }
 
     fun onClickBackSelect() {

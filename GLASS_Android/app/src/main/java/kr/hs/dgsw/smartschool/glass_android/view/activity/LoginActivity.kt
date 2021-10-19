@@ -1,6 +1,8 @@
 package kr.hs.dgsw.smartschool.glass_android.view.activity
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -13,6 +15,10 @@ class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
     lateinit var loginViewModel: LoginViewModel
 
+    companion object {
+        const val TOKEN_PREFERENCE = "TOKEN_PREFERENCES"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         performDataBinding()
@@ -23,6 +29,16 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
             })
+
+            token.observe(this@LoginActivity, {
+                val sharedPref = applicationContext.getSharedPreferences(TOKEN_PREFERENCE, Context.MODE_PRIVATE)
+
+                with(sharedPref.edit()) {
+                    putString("token", it)
+                    apply()
+                }
+            })
+
 
             onSignUpEvent.observe(this@LoginActivity, {
                 val intent = Intent(this@LoginActivity, SelectJobActivity::class.java)

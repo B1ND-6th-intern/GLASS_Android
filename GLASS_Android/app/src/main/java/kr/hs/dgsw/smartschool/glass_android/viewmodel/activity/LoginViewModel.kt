@@ -18,6 +18,8 @@ class LoginViewModel : ViewModel() {
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
+    val token = MutableLiveData<String>()
+
     fun onClickLogin() {
         val call = RetrofitClient.loginInterface.login (
             LoginRequest(email.value?: "",password.value ?: ""))
@@ -25,11 +27,16 @@ class LoginViewModel : ViewModel() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful) {
                     Log.d("Retrofit2", "연결 성공")
+
+                    val result = response.body()
+                    var status = result?.status
+                    var message = result?.message
+                    token.value = result?.token
+
                     onLoginEvent.call()
                 } else {
                     Log.d("Retrofit2", "연결 실패")
                 }
-
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {

@@ -65,6 +65,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:text="분류"
@@ -100,7 +101,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="개시물"
+                        android:textStyle="bold"
+                        android:text="게시물"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintStart_toEndOf="@+id/btn_setting"
