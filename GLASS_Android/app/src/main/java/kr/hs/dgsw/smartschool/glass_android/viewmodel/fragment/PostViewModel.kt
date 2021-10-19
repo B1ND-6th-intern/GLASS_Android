@@ -27,7 +27,9 @@ class PostViewModel: ViewModel() {
 
     // second
     val contentText = MutableLiveData<String>()
-    val hashTags = MutableLiveData<String>()
+    val hashTag = MutableLiveData<String>()
+
+    val hashTags = MutableLiveData<List<String>>()
     val secondImages = MutableLiveData<List<String>>(arrayListOf())
     val token = MutableLiveData<String>()
 
@@ -53,11 +55,13 @@ class PostViewModel: ViewModel() {
                     Log.d("Retrofit2", "onResponse: 이미지 포스팅 성공")
 
                     val firstResult = response.body()
+                    
                     secondImages.value = firstResult?.images
+                    hashTags.value = hashTag.value?.split(',')
 
                     val secondCall = RetrofitClient.postingInterface.secondPosting(
                         SecondPostingRequest(contentText.value?: "",
-                            hashTags.value?:"",
+                            hashTags.value?: listOf(),
                             secondImages.value?: listOf())
                     )
                     secondCall.enqueue(object : Callback<SecondPostingResponse> {

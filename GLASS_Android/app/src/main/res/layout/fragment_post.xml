@@ -152,7 +152,7 @@
 
         <EditText
             android:id="@+id/editText2"
-            android:text="@={vm.hashTags}"
+            android:text="@={vm.hashTag}"
             android:inputType="textMultiLine"
             android:scrollHorizontally="false"
             android:maxLength="50"
