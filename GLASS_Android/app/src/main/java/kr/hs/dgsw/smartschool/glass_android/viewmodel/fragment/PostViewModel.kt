@@ -8,7 +8,6 @@ import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.SecondPostingRequest
 import kr.hs.dgsw.smartschool.glass_android.network.response.FirstPostingResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.SecondPostingResponse
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -28,7 +27,9 @@ class PostViewModel: ViewModel() {
 
     // second
     val contentText = MutableLiveData<String>()
-    val hashTag = MutableLiveData<String>()
+    val hashTags = MutableLiveData<String>()
+    val secondImages = MutableLiveData<List<String>>(arrayListOf())
+    val token = MutableLiveData<String>()
 
     fun onClickBtnAddImage() {
         onImageEvent.call()
@@ -51,8 +52,13 @@ class PostViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     Log.d("Retrofit2", "onResponse: 이미지 포스팅 성공")
 
+                    val firstResult = response.body()
+                    secondImages.value = firstResult?.images
+
                     val secondCall = RetrofitClient.postingInterface.secondPosting(
-                        SecondPostingRequest(contentText.value?: "", hashTag.value?:"", response.body()?.images ?: listOf())
+                        SecondPostingRequest(contentText.value?: "",
+                            hashTags.value?:"",
+                            secondImages.value?: listOf())
                     )
                     secondCall.enqueue(object : Callback<SecondPostingResponse> {
                         override fun onResponse(
@@ -63,7 +69,7 @@ class PostViewModel: ViewModel() {
                                 Log.d("Retrofit2", "onResponse: 성공")
                                 onPostEvent.call()
                             } else {
-                                Log.d("Retrofit2", "onResponse: fuck")
+                                Log.d("Retrofit2", "onResponse: 실패 ${secondResponse.code()}")
                             }
                         }
 

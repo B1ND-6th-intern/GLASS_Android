@@ -31,7 +31,8 @@ class LoginActivity : AppCompatActivity() {
             })
 
             token.observe(this@LoginActivity, {
-                val sharedPref = this@LoginActivity.getSharedPreferences(TOKEN_PREFERENCE, Context.MODE_PRIVATE)
+                val sharedPref = applicationContext.getSharedPreferences(TOKEN_PREFERENCE, Context.MODE_PRIVATE)
+
                 with(sharedPref.edit()) {
                     putString("token", it)
                     apply()

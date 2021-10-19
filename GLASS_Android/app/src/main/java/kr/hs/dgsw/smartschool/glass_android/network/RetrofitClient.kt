@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitClient {
+object RetrofitClient{
     private const val BASE_URL = "http://10.80.162.123:8080/"     // 준호
     //private const val BASE_URL = "http://10.80.161.63:8080/"       // 준성
 
@@ -20,12 +20,14 @@ object RetrofitClient {
     val confirmInterface: Confirm
     val postingInterface: Posting
 
+
     init {
         val gson = GsonBuilder().setLenient().create()
+
         val intercepter = HttpLoggingInterceptor()
         intercepter.level = HttpLoggingInterceptor.Level.BODY
 
-        val logger = OkHttpClient.Builder().addInterceptor(intercepter)
+        val logger = OkHttpClient.Builder().addInterceptor(intercepter).addInterceptor(TokenInterceptor())
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100, TimeUnit.SECONDS)
             .writeTimeout(100, TimeUnit.SECONDS)
