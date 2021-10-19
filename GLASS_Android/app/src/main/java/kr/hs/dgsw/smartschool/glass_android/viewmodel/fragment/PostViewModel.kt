@@ -20,6 +20,7 @@ class PostViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
     val onImageEvent = SingleLiveEvent<Unit>()
     val onPostEvent = SingleLiveEvent<Unit>()
+    val onErrorEvent = SingleLiveEvent<Unit>()
 
     // first
     var images = MutableLiveData<ArrayList<File>>(arrayListOf())
@@ -33,6 +34,8 @@ class PostViewModel: ViewModel() {
     val secondImages = MutableLiveData<List<String>>(arrayListOf())
 
     val token = MutableLiveData<String>()
+
+    var error = MutableLiveData<String>()
 
     fun onClickBtnAddImage() {
         onImageEvent.call()
@@ -75,11 +78,15 @@ class PostViewModel: ViewModel() {
                                 onPostEvent.call()
                             } else {
                                 Log.d("Retrofit2", "onResponse: 실패 ${secondResponse.code()}")
+                                // TODO : Error Message
+                                error.value = secondResponse.body()?.error ?: "흐음.."
+                                onErrorEvent.call()
                             }
                         }
 
                         override fun onFailure(seconCall: Call<SecondPostingResponse>, secondT: Throwable) {
                             Log.d("Retrofit2", "onFailure: $secondT")
+                            onErrorEvent.call()
                         }
 
                     })

@@ -67,9 +67,11 @@ class PostFragment : Fragment() {
 
             // 서버에 값 보내는 기능 만들기
             onPostEvent.observe(this@PostFragment, {
-
-
                 findNavController().navigate(R.id.action_postFragment_to_main_home)
+            })
+
+            onErrorEvent.observe(this@PostFragment, {
+                Toast.makeText(context, "${error.value}", Toast.LENGTH_SHORT).show()
             })
         }
         return binding.root
