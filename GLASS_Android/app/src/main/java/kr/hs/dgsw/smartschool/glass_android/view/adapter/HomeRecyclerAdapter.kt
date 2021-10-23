@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -12,18 +11,17 @@ import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentPostItemBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.Post
 import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
-import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.PostViewModel
-import kr.hs.dgsw.smartschool.glass_android.viewmodel.item.MainPostItemViewModel
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 
 class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
     RecyclerView.Adapter<HomeRecyclerAdapter.HomeViewHolder>(){
 
-    var recyclerPostList : List<Post> = ArrayList<Post>()
+    var recyclerPostList : List<Writings> = ArrayList<Writings>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HomeRecyclerAdapter.HomeViewHolder {
+    ): HomeViewHolder {
         return HomeViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -34,17 +32,19 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
         )
     }
 
-    override fun onBindViewHolder(holder: HomeRecyclerAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(recyclerPostList[position])
     }
 
     override fun getItemCount(): Int = recyclerPostList.size
 
     class HomeViewHolder(private val binding: FragmentPostItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: Post) {
-            with(post) {
-                binding.tvCountHeart.text = likeStatus + "개"
+        fun bind(writings: Writings) {
+            with(writings) {
+                binding.tvCountHeart.text = likeCount.toString() + "개"
                 binding.tvPostUserName.text = name
+                binding.tvPostContent.text = text
+
 
                 Glide.with(binding.root)
                     .load(profileImage)

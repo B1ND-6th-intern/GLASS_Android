@@ -71,7 +71,7 @@ class PostFragment : Fragment() {
             })
 
             onErrorEvent.observe(this@PostFragment, {
-                Toast.makeText(context, "${error.value}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${error}", Toast.LENGTH_SHORT).show()
             })
         }
         return binding.root
