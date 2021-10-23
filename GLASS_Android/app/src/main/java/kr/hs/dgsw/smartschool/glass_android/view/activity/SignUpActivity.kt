@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.glass_android.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +19,8 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         performDataBinding()
 
+        var permissions = intent.getIntExtra("Permission", -1)
+
         with(signUpViewModel) {
             onSignUpEvent.observe(this@SignUpActivity, {
                 if(binding.checkboxPrivateInfo.isChecked) {
@@ -29,6 +32,16 @@ class SignUpActivity : AppCompatActivity() {
                 }
             })
 
+            permission = permissions
+            if(permission == 0) {
+                binding.editClass.visibility = View.VISIBLE
+                binding.editGrade.visibility = View.VISIBLE
+                binding.editNumber.visibility = View.VISIBLE
+            } else if (permission == 1 || permission == 2) {
+                binding.editClass.visibility = View.GONE
+                binding.editGrade.visibility = View.GONE
+                binding.editNumber.visibility = View.GONE
+            }
 
             onEmailEvent.observe(this@SignUpActivity, {
                 Toast.makeText(applicationContext, "재전송 횟수는 총 $sendCount 회 남았습니다", Toast.LENGTH_SHORT).show()

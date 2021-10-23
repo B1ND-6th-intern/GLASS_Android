@@ -20,6 +20,19 @@ class SelectJobActivity : AppCompatActivity() {
         with(selectJobViewModel) {
             onStudentEvent.observe(this@SelectJobActivity, {
                 val intent = Intent(this@SelectJobActivity, SignUpActivity::class.java)
+                intent.putExtra("Permission", 0)
+                startActivity(intent)
+            })
+
+            onParentsEvent.observe(this@SelectJobActivity, {
+                val intent = Intent(this@SelectJobActivity, SignUpActivity::class.java)
+                intent.putExtra("Permission", 1)
+                startActivity(intent)
+            })
+
+            onTeacherEvent.observe(this@SelectJobActivity, {
+                val intent = Intent(this@SelectJobActivity, SignUpActivity::class.java)
+                intent.putExtra("Permission", 2)
                 startActivity(intent)
             })
 

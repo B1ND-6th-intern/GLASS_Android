@@ -30,10 +30,12 @@ class SignUpViewModel : ViewModel() {
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val password2 = MutableLiveData<String>()
+    var permission = -1
     val isAgree = MutableLiveData<Boolean>(false)
 
 
     fun onClickSignUp() {
+
         if(password.value != null && password2.value != null && email.value != null && name.value != null && grade.value != null && classNumber.value != null && stuNumber.value != null) {
             val signUpRequest = SignUpRequest(
                     password.value ?: "",
