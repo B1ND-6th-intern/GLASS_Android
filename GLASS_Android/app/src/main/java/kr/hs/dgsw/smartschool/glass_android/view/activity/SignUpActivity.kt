@@ -54,6 +54,10 @@ class SignUpActivity : AppCompatActivity() {
             onEmptyEvent.observe(this@SignUpActivity, {
                 Toast.makeText(this@SignUpActivity, "칸이 비었어요!", Toast.LENGTH_SHORT).show()
             })
+
+            message.observe(this@SignUpActivity, {
+                Toast.makeText(this@SignUpActivity, "$message", Toast.LENGTH_SHORT).show()
+            })
         }
     }
 
