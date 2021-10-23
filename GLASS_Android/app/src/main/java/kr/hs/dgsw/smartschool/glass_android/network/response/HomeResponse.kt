@@ -9,5 +9,7 @@ data class Writings(
     val likeCount: Int,
     val imgs: List<String>,
     val text: String,
+    val name: String,
+    val profileImage: String
 )
 

@@ -4,11 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivitySelectJobBinding
-import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.LoginViewModel
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.SelectJobViewModel
 
 class SelectJobActivity : AppCompatActivity() {
@@ -21,7 +19,7 @@ class SelectJobActivity : AppCompatActivity() {
 
         with(selectJobViewModel) {
             onStudentEvent.observe(this@SelectJobActivity, {
-                val intent = Intent(this@SelectJobActivity, SignUpStudentActivity::class.java)
+                val intent = Intent(this@SelectJobActivity, SignUpActivity::class.java)
                 startActivity(intent)
             })
 

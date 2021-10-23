@@ -6,13 +6,13 @@
     <data>
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.SignUpStudentViewModel" />
+            type="kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.activity.SignUpStudentActivity">
+        tools:context=".view.activity.SignUpActivity">
 
         <ImageView
             android:id="@+id/imageView"

@@ -30,7 +30,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.SignUpStudentActivity"
+            android:name=".view.activity.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

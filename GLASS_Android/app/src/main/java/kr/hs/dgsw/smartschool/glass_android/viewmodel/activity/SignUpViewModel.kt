@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpStudentViewModel : ViewModel() {
+class SignUpViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
     val onEmptyEvent = SingleLiveEvent<Unit>()
