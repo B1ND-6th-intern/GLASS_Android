@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentPostItemBinding
-import kr.hs.dgsw.smartschool.glass_android.network.model.Post
 import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 
