@@ -1,15 +1,15 @@
 package kr.hs.dgsw.smartschool.glass_android.network.response
 
 data class HomeResponse(
-    val writing: List<Writing>
+    val writings: List<Writings>
 )
 
-data class Writing(
+data class Writings(
     val hashtags: List<String>,
     val imgs: List<String>,
     val text: String,
     val _id: String,
-    val comments: String,
+    val comments: List<String>,
     val owner: Owner,
     val isLike: Boolean,
     val likeCount: Int
