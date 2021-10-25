@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
+import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
+import kr.hs.dgsw.smartschool.glass_android.view.adapter.PostedImgAdapter
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -40,12 +44,18 @@ class HomeFragment : Fragment() {
 //            return@setOnRefreshListener
 //        }
 
+
+
         val homeRecyclerAdapter = HomeRecyclerAdapter(viewLifecycleOwner)
         binding.homeRecycler.adapter = homeRecyclerAdapter
 
+
         with(homeViewModel) {
+            getHomePost()
+
             postList.observe(this@HomeFragment.viewLifecycleOwner, {
                 homeRecyclerAdapter.recyclerPostList = it
+
                 homeRecyclerAdapter.notifyDataSetChanged()
             })
         }

@@ -10,7 +10,7 @@ data class Writing(
     val text: String,
     val _id: String,
     val comments: String,
-    val owner: List<Owner>,
+    val owner: Owner,
     val isLike: Boolean,
     val likeCount: Int
 )
