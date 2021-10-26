@@ -119,7 +119,7 @@
 
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                 android:id="@+id/indicator_post"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="9dp"
                 app:dotsColor="#BFBFBF"
                 app:dotsCornerRadius="8dp"

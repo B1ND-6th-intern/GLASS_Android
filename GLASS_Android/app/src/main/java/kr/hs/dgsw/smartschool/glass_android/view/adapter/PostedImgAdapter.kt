@@ -43,6 +43,7 @@ class PostedImgAdapter(private val postImgList: List<String>):
           .error(R.drawable.ic_iv_noimage)
           .centerCrop()
           .into(binding.imgPostContent)
+
       }
     }
   }

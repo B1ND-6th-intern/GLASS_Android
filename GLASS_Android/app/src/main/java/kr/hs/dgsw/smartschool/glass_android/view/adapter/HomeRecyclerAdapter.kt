@@ -40,8 +40,6 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
         fun bind(writings: Writings) {
             with(writings) {
 
-                val mainPostItemViewModel = MainPostItemViewModel()
-
                 binding.tvCountHeart.text = likeCount.toString() + "개"
                 binding.tvPostUserName.text = writings.owner.name
                 binding.tvPostContent.text = text
@@ -53,32 +51,19 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner):
 
                 binding.tvHashtags.text = "#" + binding.tvHashtags.text
 
+                var reAvartar: String = "http://10.80.162.123:8080/uploads${owner.avatar}"
+
                 Glide.with(binding.root)
-                    .load(owner.avatar)
+                    .load(reAvartar)
                     .error(R.drawable.ic_img_profile)
                     .centerCrop()
                     .into(binding.ivUserProfile)
 
-
-                var postImgsList: ArrayList<Writings> = ArrayList()
                 val postedImgAdapter = PostedImgAdapter(writings.imgs)
 
                 binding.viewPagerPost.adapter = postedImgAdapter
                 // viewPager에 인디케이터 연결하기
                 binding.indicatorPost.setViewPager2(binding.viewPagerPost)
-
-//                with(mainPostItemViewModel) {
-//
-//
-//
-////                    postList.observe(this@HomeFragment.viewLifecycleOwner, {
-////                        homeRecyclerAdapter.recyclerPostList = it
-////
-////                        homeRecyclerAdapter.notifyDataSetChanged()
-////                    })
-//                }
-
-
             }
 
         }
