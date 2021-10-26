@@ -16,12 +16,21 @@
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/edit_signup.xml" value="0.35625" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/edit_signup_wrong.xml" value="0.35625" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/edittext_normal.xml" value="0.3101851851851852" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_add_image.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_back.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_check.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_search.xml" value="0.35625" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_setting.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_user.xml" value="0.35625" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_btn_x.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_comment.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_glass_logo_box.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_home_w.xml" value="0.35625" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_img_default_profile.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_img_profile.xml" value="0.35625" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_iv_noimage.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_logo_re.xml" value="0.34629629629629627" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_menu.xml" value="0.34629629629629627" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_parents.xml" value="0.2796296296296296" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_parents_design.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/drawable/ic_search_size.xml" value="0.35625" />
@@ -38,6 +47,7 @@
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/activity_select_job.xml" value="0.22" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/activity_sign_up_student.xml" value="0.25" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/fragment_detail.xml" value="0.25" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/fragment_edit_profile.xml" value="0.31875" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/fragment_post.xml" value="0.17123287671232876" />
@@ -51,6 +61,7 @@
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/fragment_sign_up.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/home_recycler_item.xml" value="0.25" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/home_viewpager_item.xml" value="0.3359375" />
+        <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/item_comments_recycler.xml" value="0.3359375" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/item_home_post.xml" value="0.16" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/item_home_posted_img.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/DGSW/Documents/GitHub/GLASS_Android/GLASS_Android/app/src/main/res/layout/item_popular_post.xml" value="0.3359375" />

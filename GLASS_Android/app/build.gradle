@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 27
     buildToolsVersion "30.0.3"
 
     buildFeatures {
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "kr.hs.dgsw.smartschool.glass_android"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
