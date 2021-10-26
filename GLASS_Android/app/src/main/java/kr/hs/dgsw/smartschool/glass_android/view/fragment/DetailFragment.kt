@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentDetailBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
@@ -35,9 +36,9 @@ class DetailFragment : Fragment() {
         performViewModel()
 
         with(detailViewModel) {
-//            onEditProfileEvent.observe(this@DetailFragment, {
-//                findNavController().navigate(R.id.action_main_profile_to_editProfileFragment)
-//            })
+            onBackEvent.observe(this@DetailFragment, {
+                findNavController().navigate(R.id.action_detailFragment_to_main_home)
+            })
         }
         return binding.root
     }

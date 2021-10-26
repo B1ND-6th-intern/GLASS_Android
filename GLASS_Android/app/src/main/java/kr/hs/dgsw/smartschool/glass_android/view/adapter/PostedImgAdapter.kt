@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ItemHomePostedImgBinding
-import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 
 class PostedImgAdapter(private val postImgList: List<String>):
   RecyclerView.Adapter<PostedImgAdapter.PagerViewHolder>() {
