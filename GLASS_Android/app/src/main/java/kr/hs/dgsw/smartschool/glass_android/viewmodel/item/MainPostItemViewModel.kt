@@ -1,17 +1,21 @@
 package kr.hs.dgsw.smartschool.glass_android.viewmodel.item
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 
-class MainPostItemViewModel : ViewModel() {
-    val onHeartEvent = SingleLiveEvent<Unit>()
-    val onCommentEvent = SingleLiveEvent<Unit>()
+class MainPostItemViewModel(val writings: Writings) : ViewModel() {
+
+    val onHeartEvent = SingleLiveEvent<String>()
+    val onCommentEvent = SingleLiveEvent<String>()
 
     fun onClickBtnHeart() {
-        onHeartEvent.call()
+        onHeartEvent.value = writings._id
     }
 
-    fun onCommentEvent() {
-        onCommentEvent.call()
+    fun onClickComment() {
+        onCommentEvent.value = writings._id
     }
 }

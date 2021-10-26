@@ -1,10 +1,7 @@
 package kr.hs.dgsw.smartschool.glass_android.network
 
 import com.google.gson.GsonBuilder
-import kr.hs.dgsw.smartschool.glass_android.network.api.Confirm
-import kr.hs.dgsw.smartschool.glass_android.network.api.Login
-import kr.hs.dgsw.smartschool.glass_android.network.api.Posting
-import kr.hs.dgsw.smartschool.glass_android.network.api.SignUp
+import kr.hs.dgsw.smartschool.glass_android.network.api.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,11 +16,10 @@ object RetrofitClient{
     val signUpInterface: SignUp
     val confirmInterface: Confirm
     val postingInterface: Posting
-
+    val homeInterface: Home
 
     init {
         val gson = GsonBuilder().setLenient().create()
-
         val intercepter = HttpLoggingInterceptor()
         intercepter.level = HttpLoggingInterceptor.Level.BODY
 
@@ -43,5 +39,6 @@ object RetrofitClient{
         signUpInterface = instance.create(SignUp::class.java)
         confirmInterface = instance.create(Confirm::class.java)
         postingInterface = instance.create(Posting::class.java)
+        homeInterface = instance.create(Home::class.java)
     }
 }

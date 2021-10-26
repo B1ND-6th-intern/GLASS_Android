@@ -35,7 +35,7 @@ class PostViewModel: ViewModel() {
 
     val token = MutableLiveData<String>()
 
-    var error = MutableLiveData<String>()
+    var error : String = ""
 
     fun onClickBtnAddImage() {
         onImageEvent.call()
@@ -79,7 +79,7 @@ class PostViewModel: ViewModel() {
                             } else {
                                 Log.d("Retrofit2", "onResponse: 실패 ${secondResponse.code()}")
                                 // TODO : Error Message
-                                error.value = secondResponse.body()?.error ?: "흐음.."
+                                error = secondResponse.body()?.error ?: "흐음.."
                                 onErrorEvent.call()
                             }
                         }

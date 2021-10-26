@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ItemHomePostedImgBinding
-import kr.hs.dgsw.smartschool.glass_android.network.model.PostImg
 
-class PostedImgAdapter(private val postImgList: ArrayList<PostImg>):
+class PostedImgAdapter(private val postImgList: List<String>):
   RecyclerView.Adapter<PostedImgAdapter.PagerViewHolder>() {
 
   override fun onCreateViewHolder(
@@ -33,13 +32,17 @@ class PostedImgAdapter(private val postImgList: ArrayList<PostImg>):
   override fun getItemCount(): Int = postImgList.size
 
   inner class PagerViewHolder(private val binding: ItemHomePostedImgBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(postImg: PostImg) {
-      with(postImg) {
+    fun bind(url: String) {
+      with(url) {
+
+        var reUrl: String = "http://10.80.162.123:8080/uploads$url"
+
         Glide.with(binding.root)
-          .load(contentImg)
+          .load(reUrl)
           .error(R.drawable.ic_iv_noimage)
           .centerCrop()
           .into(binding.imgPostContent)
+
       }
     }
   }

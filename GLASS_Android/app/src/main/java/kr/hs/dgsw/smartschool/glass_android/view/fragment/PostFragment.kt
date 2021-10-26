@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.glass_android.view.fragment
 
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -71,7 +70,7 @@ class PostFragment : Fragment() {
             })
 
             onErrorEvent.observe(this@PostFragment, {
-                Toast.makeText(context, "${error.value}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${error}", Toast.LENGTH_SHORT).show()
             })
         }
         return binding.root

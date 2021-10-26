@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpStudentViewModel : ViewModel() {
+class SignUpViewModel : ViewModel() {
     val onSignUpEvent = SingleLiveEvent<Unit>()
     val onBackSelectEvent = SingleLiveEvent<Unit>()
     val onEmptyEvent = SingleLiveEvent<Unit>()
@@ -20,7 +20,7 @@ class SignUpStudentViewModel : ViewModel() {
     val onEmailEvent = SingleLiveEvent<Unit>()
 
     var sendCount: Int = 6
-    val message: String = ""
+    val message = MutableLiveData<String>()
 
 
     val name = MutableLiveData<String>()
@@ -30,17 +30,25 @@ class SignUpStudentViewModel : ViewModel() {
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val password2 = MutableLiveData<String>()
+    var permission = -1
     val isAgree = MutableLiveData<Boolean>(false)
 
 
     fun onClickSignUp() {
+
+        if(permission != 0){
+            grade.value = "0"
+            classNumber.value = "0"
+            stuNumber.value = "0"
+        }
+
         if(password.value != null && password2.value != null && email.value != null && name.value != null && grade.value != null && classNumber.value != null && stuNumber.value != null) {
             val signUpRequest = SignUpRequest(
                     password.value ?: "",
                     password2.value ?: "",
                     email.value ?: "",
                     name.value ?: "",
-                    0,
+                    permission,
                     isAgree.value!!,
                     grade.value!!.toInt(),
                     classNumber.value!!.toInt(),
@@ -81,7 +89,8 @@ class SignUpStudentViewModel : ViewModel() {
                             })
 
                         } else {
-                            Log.d("Retrofit2", "onResponse: 400 fail")
+                            Log.d("Retrofit2", "onResponse: ${response.code()}")
+                            message.value = response.body()?.message
                         }
                     }
 
