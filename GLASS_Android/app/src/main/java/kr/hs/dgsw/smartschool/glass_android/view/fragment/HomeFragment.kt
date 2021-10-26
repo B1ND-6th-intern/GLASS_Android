@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
 
 
 
+
         val homeRecyclerAdapter = HomeRecyclerAdapter(viewLifecycleOwner)
         binding.homeRecycler.adapter = homeRecyclerAdapter
 
@@ -51,9 +53,13 @@ class HomeFragment : Fragment() {
 
             postList.observe(this@HomeFragment.viewLifecycleOwner, {
                 homeRecyclerAdapter.recyclerPostList = it
-
                 homeRecyclerAdapter.notifyDataSetChanged()
             })
+
+            HomeRecyclerAdapter.onCommentClick.observe(this@HomeFragment, {
+                findNavController().navigate(R.id.action_main_home_to_detailFragment)
+            })
+
         }
         return binding.root
     }

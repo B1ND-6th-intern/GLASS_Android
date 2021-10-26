@@ -88,6 +88,8 @@
         android:label="DetailFragment" >
         <action
             android:id="@+id/action_detailFragment_to_main_home"
-            app:destination="@id/main_home" />
+            app:destination="@id/main_home"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
