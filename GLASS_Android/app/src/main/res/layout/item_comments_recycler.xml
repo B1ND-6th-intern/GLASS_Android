@@ -31,6 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_comments_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="이름 테스트"
@@ -39,8 +40,10 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_comments_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxWidth="300dp"
                     android:text="아니 내가 있잖아 이제 테스트를 할 예정이거든?
 \n그냥 하고 있다고"
                     android:textColor="@color/black" />

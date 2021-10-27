@@ -41,12 +41,8 @@ class HomeFragment : Fragment() {
 //            return@setOnRefreshListener
 //        }
 
-
-
-
         val homeRecyclerAdapter = HomeRecyclerAdapter(viewLifecycleOwner)
         binding.homeRecycler.adapter = homeRecyclerAdapter
-
 
         with(homeViewModel) {
             getHomePost()
@@ -59,6 +55,7 @@ class HomeFragment : Fragment() {
             HomeRecyclerAdapter.onCommentClick.observe(this@HomeFragment, {
                 findNavController().navigate(R.id.action_main_home_to_detailFragment)
             })
+
 
         }
         return binding.root

@@ -58,15 +58,6 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_post_user_num"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/btn_post_menu"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="17dp"
-                android:background="@drawable/ic_menu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
