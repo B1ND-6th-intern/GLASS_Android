@@ -1,5 +1,5 @@
 package kr.hs.dgsw.smartschool.glass_android.network.response
 
-data class popularPostResponse(
+data class PopularPostResponse(
     val writings: List<Writing>
 )

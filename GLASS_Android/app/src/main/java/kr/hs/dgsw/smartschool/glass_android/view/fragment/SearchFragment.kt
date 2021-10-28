@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentSearchBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
@@ -37,6 +38,37 @@ class SearchFragment : Fragment() {
         performViewModel()
 
         with(searchViewModel) {
+            getPopularPost()
+
+            popularList.observe(this@SearchFragment.viewLifecycleOwner, {
+
+//                var reimg1: String = "http://10.80.162.123:8080/uploads${it[0].imgs[0]}"
+//                var reimg2: String = "http://10.80.162.123:8080/uploads${it[1].imgs[0]}"
+//                var reimg3: String = "http://10.80.162.123:8080/uploads${it[2].imgs[0]}"
+
+                var reimg1: String = "http://10.80.163.231:8080/uploads${it[0].imgs[0]}"
+                var reimg2: String = "http://10.80.163.231:8080/uploads${it[1].imgs[0]}"
+                var reimg3: String = "http://10.80.163.231:8080/uploads${it[2].imgs[0]}"
+
+                Glide.with(binding.root)
+                    .load(reimg1)
+                    .error(R.drawable.ic_iv_noimage)
+                    .fitCenter()
+                    .into(binding.ivFirst)
+
+                Glide.with(binding.root)
+                    .load(reimg2)
+                    .error(R.drawable.ic_iv_noimage)
+                    .fitCenter()
+                    .into(binding.ivSecond)
+
+                Glide.with(binding.root)
+                    .load(reimg3)
+                    .error(R.drawable.ic_iv_noimage)
+                    .fitCenter()
+                    .into(binding.ivThird)
+            })
+
             onSearchEvent.observe(this@SearchFragment, {
                 findNavController().apply { navigate(R.id.action_main_search_to_realSearchFragment) }
             })
