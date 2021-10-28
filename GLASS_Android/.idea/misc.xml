@@ -77,7 +77,9 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_post_item.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14034340057031772" />
         <entry key="app/src/main/res/layout/item_comments_recycler.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_popular_post.xml" value="0.14947916666666666" />
       </map>
     </option>
   </component>

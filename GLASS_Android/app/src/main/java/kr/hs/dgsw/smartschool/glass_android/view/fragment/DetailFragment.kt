@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -29,6 +28,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setNavVisible(false)
+
     }
 
     override fun onCreateView(
@@ -46,6 +46,7 @@ class DetailFragment : Fragment() {
         // 댓글 리사이클러뷰 연결
         val commentsRecyclerAdapter = CommentsRecyclerAdapter(viewLifecycleOwner)
         binding.commentsRecycler.adapter = commentsRecyclerAdapter
+        binding.commentsRecycler.scrollToPosition(commentsRecyclerAdapter.itemCount - 1)
 
         with(detailViewModel) {
             val _id = id.postId
