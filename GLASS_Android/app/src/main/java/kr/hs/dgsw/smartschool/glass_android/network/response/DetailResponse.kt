@@ -9,6 +9,7 @@ data class Writing(
     val hashtags: List<String>,
     val likeCount : Int,
     val owner: Owner,
+    val _id: String,
     val comments: ArrayList<Comments>,
     val imgs: List<String>,
     val isLike: Boolean,

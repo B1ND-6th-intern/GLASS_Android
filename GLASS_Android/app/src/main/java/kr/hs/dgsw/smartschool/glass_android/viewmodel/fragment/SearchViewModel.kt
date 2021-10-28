@@ -13,8 +13,9 @@ import retrofit2.Response
 
 class SearchViewModel: ViewModel() {
     val onSearchEvent = SingleLiveEvent<Unit>()
-    val onPopularDetailEvent = SingleLiveEvent<Unit>()
+    val onPopularDetailEvent = SingleLiveEvent<String>()
     val popularList = MutableLiveData<List<Writing>>()
+    val clickPermission = MutableLiveData<Int>()
 
     fun onClickBtnSearch() {
         onSearchEvent.call()
@@ -40,9 +41,11 @@ class SearchViewModel: ViewModel() {
             override fun onFailure(call: Call<PopularPostResponse>, t: Throwable) {
                 Log.d("Retrofit2", "onFailure: $t")
             }
-
         })
     }
-    
 
+    fun onClickImage(permission : Int) {
+        clickPermission.value = permission
+        onPopularDetailEvent.value = popularList.value.toString()
+    }
 }

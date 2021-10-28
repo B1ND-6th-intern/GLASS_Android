@@ -32,6 +32,14 @@
         <action
             android:id="@+id/action_main_search_to_realSearchFragment"
             app:destination="@id/realSearchFragment" />
+        <action
+            android:id="@+id/action_main_search_to_detailFragment"
+            app:destination="@id/detailFragment" >
+            <argument
+                android:name="postId"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
     </fragment>
 
     <fragment
@@ -95,7 +103,11 @@
         <argument
             android:name="postId"
             app:argType="string"
-            android:defaultValue="0"/>
+            android:defaultValue="0" />
+        <argument
+            android:name="popularId"
+            app:argType="string"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_detailFragment_to_main_home"
             app:destination="@id/main_home"

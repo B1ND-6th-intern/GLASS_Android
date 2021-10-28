@@ -112,6 +112,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_margin="10dp"
                                     android:src="@drawable/ic_iv_noimage"
+                                    android:onClick="@{() -> vm.onClickImage(1)}"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +120,6 @@
                             </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -176,6 +176,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_margin="10dp"
                                     android:src="@drawable/ic_iv_noimage"
+                                    android:onClick="@{() -> vm.onClickImage(2)}"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -239,6 +240,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_margin="10dp"
                                     android:src="@drawable/ic_iv_noimage"
+                                    android:onClick="@{() -> vm.onClickImage(3)}"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
