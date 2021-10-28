@@ -18,6 +18,7 @@ object RetrofitClient{
     val postingInterface: Posting
     val homeInterface: Home
     val detailInterface: Detail
+    val commentUploadInterface : CommentUpload
 
     init {
         val gson = GsonBuilder().setLenient().create()
@@ -42,5 +43,6 @@ object RetrofitClient{
         postingInterface = instance.create(Posting::class.java)
         homeInterface = instance.create(Home::class.java)
         detailInterface = instance.create(Detail::class.java)
+        commentUploadInterface = instance.create(CommentUpload::class.java)
     }
 }

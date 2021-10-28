@@ -12,12 +12,11 @@ import kr.hs.dgsw.smartschool.glass_android.network.response.Comments
 class CommentsRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     RecyclerView.Adapter<CommentsRecyclerAdapter.CommentsViewHolder>() {
 
-    var recyclerCommentsList: List<Comments> = ArrayList<Comments>()
+    var recyclerCommentsList: ArrayList<Comments> = ArrayList<Comments>()
 
     class CommentsViewHolder(private val binding: ItemCommentsRecyclerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comments: Comments, lifecycleOwner: LifecycleOwner) {
-
             with(comments) {
                 binding.tvCommentsName.text = owner.name
                 binding.tvCommentsText.text = text

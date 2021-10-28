@@ -9,7 +9,7 @@ data class Writing(
     val hashtags: List<String>,
     val likeCount : Int,
     val owner: Owner,
-    val comments: List<Comments>,
+    val comments: ArrayList<Comments>,
     val imgs: List<String>,
     val isLike: Boolean,
     val isOwner: Boolean

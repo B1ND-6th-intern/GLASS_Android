@@ -183,6 +183,9 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="70dp"
                         android:hint="선한 댓글 필수!"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
+                        android:text="@={vm.comment}"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/edit_signup"
@@ -196,6 +199,7 @@
                         android:layout_height="35dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/ic_send"
+                        android:onClick="@{() -> vm.onClickUpload()}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
