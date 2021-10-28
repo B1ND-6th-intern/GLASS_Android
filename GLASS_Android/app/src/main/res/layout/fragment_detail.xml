@@ -167,6 +167,8 @@
                     android:id="@+id/comments_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
                     tools:listitem="@layout/item_comments_recycler"
                     />
 

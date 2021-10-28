@@ -9,7 +9,6 @@ data class Writings(
     val imgs: List<String>,
     val text: String,
     val _id: String,
-    val comments: List<String>,
     val owner: Owner,
     val isLike: Boolean,
     val likeCount: Int

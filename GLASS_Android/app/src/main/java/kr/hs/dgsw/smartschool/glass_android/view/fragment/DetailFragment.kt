@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentDetailBinding
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
@@ -20,7 +21,7 @@ import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.DetailViewModel
 class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     lateinit var detailViewModel: DetailViewModel
-    lateinit var writing: Writing
+    val id: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,30 +45,30 @@ class DetailFragment : Fragment() {
         binding.commentsRecycler.adapter = commentsRecyclerAdapter
 
         with(detailViewModel) {
-            getDetailPost()
+            val _id = id.postId
+            getDetailPost(_id)
 
-            commentsList.observe(this@DetailFragment.viewLifecycleOwner, {
-                commentsRecyclerAdapter.recyclerCommentsList = it
+            detailPost.observe(this@DetailFragment.viewLifecycleOwner, {
+                binding.tvCountHeart.text = it.likeCount.toString() + "개"
+                binding.tvPostContent.text = it.text
+                binding.tvPostName.text = it.owner.name
+                binding.tvHashtags.text = ""
+                for (i in 0 until it.hashtags.count())
+                    binding.tvHashtags.text =
+                        binding.tvHashtags.text.toString() + it.hashtags[i] + "  "
+
+                binding.tvHashtags.text = "#" + binding.tvHashtags.text
+
+                val postedImgAdapter = PostedImgAdapter(it.imgs)
+                binding.viewPagerPost.adapter = postedImgAdapter
+                // viewPager에 인디케이터 연결하기
+                binding.indicatorPost.setViewPager2(binding.viewPagerPost)
+
+                commentsRecyclerAdapter.recyclerCommentsList = it.comments
                 commentsRecyclerAdapter.notifyDataSetChanged()
             })
 
-            with(writing) {
-                detailPost.observe(this@DetailFragment.viewLifecycleOwner, {
-                    binding.tvCountHeart.text = likeCount.toString() + "개"
-                    binding.tvPostContent.text = text
-                    binding.tvPostName.text = writing.owner.name
-                    binding.tvHashtags.text = ""
-                    for (i in 0 until hashtags.count())
-                        binding.tvHashtags.text =
-                            binding.tvHashtags.text.toString() + hashtags[i] + "  "
 
-                    binding.tvHashtags.text = "#" + binding.tvHashtags.text
-                })
-            }
-            val postedImgAdapter = PostedImgAdapter(writing.imgs)
-            binding.viewPagerPost.adapter = postedImgAdapter
-            // viewPager에 인디케이터 연결하기
-            binding.indicatorPost.setViewPager2(binding.viewPagerPost)
 
             onBackEvent.observe(this@DetailFragment, {
                 findNavController().navigate(R.id.action_detailFragment_to_main_home)

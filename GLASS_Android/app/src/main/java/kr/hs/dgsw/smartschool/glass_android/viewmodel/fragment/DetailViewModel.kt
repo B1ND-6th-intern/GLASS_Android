@@ -15,17 +15,14 @@ import retrofit2.Response
 
 class DetailViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
-
     val detailPost = MutableLiveData<Writing>()
-    val commentsList = MutableLiveData<List<Comments>>()
 
     fun onClickBack() {
         onBackEvent.call()
     }
 
-    fun getDetailPost() {
-        // TODO : ID 값이 뭔지 물어보고 넣기 writing 접근법 물어보기
-        val getDetailCall = RetrofitClient.detailInterface.detailPost()
+    fun getDetailPost(id: String) {
+        val getDetailCall = RetrofitClient.detailInterface.detailPost(id)
 
         getDetailCall.enqueue(object : Callback<DetailResponse> {
             override fun onResponse(
@@ -36,7 +33,7 @@ class DetailViewModel: ViewModel() {
                     val result = response.body()
                     detailPost.value = result?.writing
 
-                    Log.d("Retrofit2", "onResponse: 성공이요")
+                    Log.d("Retrofit2", "onResponse: 성공 Detail")
                 } else {
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
                 }
