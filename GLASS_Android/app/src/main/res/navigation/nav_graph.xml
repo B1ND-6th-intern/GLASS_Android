@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_main_home_to_postFragment"
-            app:destination="@id/postFragment" />
+            app:destination="@id/postFragment" >
+        </action>
         <action
             android:id="@+id/action_main_home_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment" >
+            <argument
+                android:name="postId"
+                app:argType="string"
+                android:defaultValue="0"/>
+        </action>
     </fragment>
 
     <fragment
@@ -26,6 +32,14 @@
         <action
             android:id="@+id/action_main_search_to_realSearchFragment"
             app:destination="@id/realSearchFragment" />
+        <action
+            android:id="@+id/action_main_search_to_detailFragment"
+            app:destination="@id/detailFragment" >
+            <argument
+                android:name="postId"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
     </fragment>
 
     <fragment
@@ -86,6 +100,14 @@
         android:id="@+id/detailFragment"
         android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.DetailFragment"
         android:label="DetailFragment" >
+        <argument
+            android:name="postId"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="popularId"
+            app:argType="string"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_detailFragment_to_main_home"
             app:destination="@id/main_home"

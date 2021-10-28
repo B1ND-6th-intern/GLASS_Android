@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.HomeViewModel
@@ -41,12 +44,8 @@ class HomeFragment : Fragment() {
 //            return@setOnRefreshListener
 //        }
 
-
-
-
         val homeRecyclerAdapter = HomeRecyclerAdapter(viewLifecycleOwner)
         binding.homeRecycler.adapter = homeRecyclerAdapter
-
 
         with(homeViewModel) {
             getHomePost()
@@ -57,8 +56,10 @@ class HomeFragment : Fragment() {
             })
 
             HomeRecyclerAdapter.onCommentClick.observe(this@HomeFragment, {
-                findNavController().navigate(R.id.action_main_home_to_detailFragment)
+                val action = HomeFragmentDirections.actionMainHomeToDetailFragment(it)
+                findNavController().navigate(action)
             })
+
 
         }
         return binding.root
