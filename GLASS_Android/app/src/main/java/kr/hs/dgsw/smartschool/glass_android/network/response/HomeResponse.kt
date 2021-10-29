@@ -10,7 +10,7 @@ data class Writings(
     val text: String,
     val _id: String,
     val owner: Owner,
-    val isLike: Boolean,
+    var isLike: Boolean,
     val likeCount: Int
 )
 

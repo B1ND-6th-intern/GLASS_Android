@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.response.HomeResponse
+import kr.hs.dgsw.smartschool.glass_android.network.response.LikeResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,6 +13,7 @@ import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
     val postList = MutableLiveData<List<Writings>>()
+    val id = MutableLiveData<String>()
 
     fun getHomePost() {
         val getPostCall = RetrofitClient.homeInterface.homePost()
@@ -36,5 +38,22 @@ class HomeViewModel: ViewModel() {
         })
     }
 
+    fun onClickLikeBtn() {
+        val clickLikeCall = RetrofitClient.likeInterface.editLike(id.value.toString())
 
+        clickLikeCall.enqueue(object : Callback<LikeResponse> {
+            override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("Retrofit2", "onResponse: 성공 like")
+                } else {
+                    Log.d("Retrofit2", "onResponse: ${response.code()} like")
+                }
+            }
+
+            override fun onFailure(call: Call<LikeResponse>, t: Throwable) {
+                Log.d("Retrofit2", "onFailure: $t like")
+            }
+
+        })
+    }
 }

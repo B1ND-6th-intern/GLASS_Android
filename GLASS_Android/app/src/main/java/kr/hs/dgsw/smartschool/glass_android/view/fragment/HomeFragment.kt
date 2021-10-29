@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentHomeBinding
-import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
-import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.HomeRecyclerAdapter
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.HomeViewModel
@@ -60,7 +57,10 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             })
 
-
+            HomeRecyclerAdapter.onHeartClick.observe(this@HomeFragment, {
+                id.value = it
+                onClickLikeBtn()
+            })
         }
         return binding.root
     }

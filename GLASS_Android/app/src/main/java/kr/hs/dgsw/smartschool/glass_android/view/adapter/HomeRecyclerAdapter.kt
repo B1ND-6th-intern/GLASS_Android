@@ -76,6 +76,16 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
 
             viewModel.onHeartEvent.observe(lifecycleOwner, {
                 onHeartClick.value = writings._id
+
+                if (!writings.isLike) {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_blue)
+                    binding.tvCountHeart.text = "${writings.likeCount + 1}"
+                    writings.isLike = true
+                } else {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
+                    binding.tvCountHeart.text = "${writings.likeCount - 1}"
+                    writings.isLike = false
+                }
             })
             viewModel.onCommentEvent.observe(lifecycleOwner, {
                 onCommentClick.value = writings._id
