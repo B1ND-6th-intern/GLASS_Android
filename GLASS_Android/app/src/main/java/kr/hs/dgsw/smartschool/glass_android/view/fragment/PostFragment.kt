@@ -69,6 +69,10 @@ class PostFragment : Fragment() {
                 findNavController().navigate(R.id.action_postFragment_to_main_home)
             })
 
+            onSuccessEvent.observe(this@PostFragment, {
+                Toast.makeText(activity, "포스팅에 성공했습니다.", Toast.LENGTH_SHORT).show()
+            })
+
             onErrorEvent.observe(this@PostFragment, {
                 Toast.makeText(context, "${error}", Toast.LENGTH_SHORT).show()
             })

@@ -21,6 +21,7 @@ class PostViewModel: ViewModel() {
     val onImageEvent = SingleLiveEvent<Unit>()
     val onPostEvent = SingleLiveEvent<Unit>()
     val onErrorEvent = SingleLiveEvent<Unit>()
+    val onSuccessEvent = SingleLiveEvent<Unit>()
 
     // first
     var images = MutableLiveData<ArrayList<File>>(arrayListOf())
@@ -42,6 +43,7 @@ class PostViewModel: ViewModel() {
     }
 
     fun onClickBtnPost() {
+        onPostEvent.call()
         val firstCall = RetrofitClient.postingInterface.firstPosting(
             images.value?.map { MultipartBody.Part.createFormData(
                 "img",
@@ -75,7 +77,7 @@ class PostViewModel: ViewModel() {
                         ) {
                             if (secondResponse.isSuccessful) {
                                 Log.d("Retrofit2", "onResponse: 성공")
-                                onPostEvent.call()
+                                onSuccessEvent.call()
                             } else {
                                 Log.d("Retrofit2", "onResponse: 실패 ${secondResponse.code()}")
                                 // TODO : Error Message

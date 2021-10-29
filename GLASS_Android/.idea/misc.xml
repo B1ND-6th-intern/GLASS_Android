@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/drawable/btn_heart_blue.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/drawable/edit_signup.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/layout/activity_check_email.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_select_job.xml" value="0.14947916666666666" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.22658243079467025" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_post_item.xml" value="0.14895833333333333" />
