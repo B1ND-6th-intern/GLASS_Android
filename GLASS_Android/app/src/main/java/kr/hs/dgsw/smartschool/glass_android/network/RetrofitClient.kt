@@ -23,6 +23,8 @@ object RetrofitClient{
     val myProfileInterface: MyProfile
     val profileInterface: Profile
     val likeInterface : Like
+    val profileEditInterface : ProfileEdit
+    val profileEditAvatarInterface : ProfileEditAvatar
 
     init {
         val gson = GsonBuilder().setLenient().create()
@@ -52,5 +54,7 @@ object RetrofitClient{
         myProfileInterface = instance.create(MyProfile::class.java)
         profileInterface = instance.create(Profile::class.java)
         likeInterface = instance.create(Like::class.java)
+        profileEditInterface = instance.create(ProfileEdit::class.java)
+        profileEditAvatarInterface = instance.create(ProfileEditAvatar::class.java)
     }
 }

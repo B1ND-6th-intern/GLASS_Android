@@ -33,18 +33,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/btn_edit_check"
-                android:layout_width="30dp"
-                android:layout_height="25dp"
-                android:layout_margin="15dp"
-                android:onClick="@{() -> vm.onClickBtnEditCheck()}"
-                android:background="@drawable/ic_btn_check"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,11 +69,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_edit_profile" />
 
+        <Button
+            android:id="@+id/btn_check_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_design"
+            android:onClick="@{() -> vm.onClickAvatarCheck()}"
+            android:text="사진 변경 확인"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_profile_image" />
+
         <EditText
             android:id="@+id/edit_change_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="이름"
+            android:text="@={vm.name}"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:background="@drawable/edittext_normal"
@@ -94,14 +98,15 @@
             android:layout_marginLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_change_profile_image" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_check_avatar" />
 
         <EditText
             android:id="@+id/edit_change_introduce"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_normal"
-            android:hint="소개"
+            android:hint="자기 소개"
+            android:text="@={vm.introduction}"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:layout_marginTop="30dp"
@@ -110,6 +115,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_change_name" />
+
+        <Button
+            android:id="@+id/btn_check_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_design"
+            android:onClick="@{() -> vm.onClickEditCheck()}"
+            android:text="소개 변경 확인"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_change_introduce" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

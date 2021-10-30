@@ -2,12 +2,14 @@ package kr.hs.dgsw.smartschool.glass_android.view.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,6 +18,7 @@ import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentEditProfileBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.EditProfileViewModel
+import java.io.File
 
 class EditProfileFragment : Fragment() {
     lateinit var binding: FragmentEditProfileBinding
@@ -44,13 +47,17 @@ class EditProfileFragment : Fragment() {
             })
 
             onEditCheckEvent.observe(this@EditProfileFragment, {
-                findNavController().navigate(R.id.action_editProfileFragment_to_main_profile)
+                Toast.makeText(context, "변경에 성공했습니다", Toast.LENGTH_SHORT).show()
             })
 
             onChangeProfileImageEvent.observe(this@EditProfileFragment, {
                 val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 intent.type = "image/*"
                 startActivityForResult(intent, 10)
+            })
+
+            onAvatarCheckEvent.observe(this@EditProfileFragment, {
+                Toast.makeText(context, "프로필 아바타 변경에 성공했습니다", Toast.LENGTH_SHORT).show()
             })
         }
 
@@ -62,7 +69,8 @@ class EditProfileFragment : Fragment() {
 
         if (requestCode == 10 && resultCode == Activity.RESULT_OK) {
             data?.data?.let { uri ->
-                val imageUri: android.net.Uri? = data.data
+                val imageUri: Uri? = data.data
+                editProfileViewModel.avatar.value?.add( File(imageUri?.let { getRealPathFromURI(it).path }))
                 if (imageUri != null) {
                     Glide.with(binding.root)
                         .load(imageUri)
@@ -79,5 +87,15 @@ class EditProfileFragment : Fragment() {
         binding.vm = editProfileViewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()
+    }
+
+    private fun getRealPathFromURI(uri: Uri): Uri {
+        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = context?.contentResolver?.query(uri, filePathColumn, null, null, null)
+        cursor?.moveToFirst()
+        val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
+        val picturePath = columnIndex?.let { cursor.getString(it) }
+        cursor?.close()
+        return Uri.fromFile(File(picturePath ?: ""))
     }
 }
