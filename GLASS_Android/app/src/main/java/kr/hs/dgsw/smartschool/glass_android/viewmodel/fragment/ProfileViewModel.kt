@@ -37,7 +37,7 @@ class ProfileViewModel: ViewModel() {
                             infoResponse: Response<ProfileResponse>
                         ) {
                             if (infoResponse.isSuccessful) {
-                                // TODO : 성공이요
+                                // 성공
                                 val result2 = infoResponse.body()
                                 userInfo.value = result2?.user
 

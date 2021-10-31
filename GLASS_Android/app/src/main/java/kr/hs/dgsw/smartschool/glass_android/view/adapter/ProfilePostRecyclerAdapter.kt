@@ -12,11 +12,12 @@ import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ItemProfilePostBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.ProfilePost
 import kr.hs.dgsw.smartschool.glass_android.network.model.User
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 
 class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     RecyclerView.Adapter<ProfilePostRecyclerAdapter.ProfilePostViewHolder>() {
 
-    var profilePostList: List<String> = ArrayList<String>()
+    var profilePostList: List<Writings> = ArrayList<Writings>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
     ): ProfilePostViewHolder {
@@ -37,9 +38,9 @@ class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     override fun getItemCount(): Int = profilePostList.size
 
     class ProfilePostViewHolder(private val binding: ItemProfilePostBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(url: String) {
+        fun bind(writings: Writings) {
 
-            var reUrl: String = "http://10.80.162.123:8080/uploads$url"
+            var reUrl: String = "http://10.80.162.123:8080/uploads${writings.imgs[0]}"
 
 
             Glide.with(binding.root)

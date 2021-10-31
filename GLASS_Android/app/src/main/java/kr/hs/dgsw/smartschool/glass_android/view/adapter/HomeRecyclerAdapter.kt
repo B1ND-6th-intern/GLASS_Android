@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.glass_android.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -66,6 +67,13 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
                     .error(R.drawable.ic_img_profile)
                     .centerCrop()
                     .into(binding.ivUserProfile)
+
+                Log.d("TESTTEST", "bind: $isLike")
+                if (isLike) {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_blue)
+                } else {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
+                }
             }
 
             val postedImgAdapter = PostedImgAdapter(writings.imgs)
@@ -79,11 +87,9 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
 
                 if (!writings.isLike) {
                     binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_blue)
-                    binding.tvCountHeart.text = "${writings.likeCount + 1}"
                     writings.isLike = true
                 } else {
                     binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
-                    binding.tvCountHeart.text = "${writings.likeCount - 1}"
                     writings.isLike = false
                 }
             })

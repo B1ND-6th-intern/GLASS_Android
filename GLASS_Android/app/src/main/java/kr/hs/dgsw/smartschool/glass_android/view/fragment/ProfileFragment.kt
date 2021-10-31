@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
 
 //                homeRecyclerAdapter.recyclerPostList = it
 //                homeRecyclerAdapter.notifyDataSetChanged()
-                profilePostRecyclerAdapter.profilePostList = it.writings[0].imgs
+                profilePostRecyclerAdapter.profilePostList = it.writings
                 profilePostRecyclerAdapter.notifyDataSetChanged()
             })
         }

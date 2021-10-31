@@ -22,6 +22,7 @@ class CommentsRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
                 binding.tvCommentsText.text = text
             }
         }
+
     }
 
     override fun onCreateViewHolder(

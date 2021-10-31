@@ -40,7 +40,6 @@ class DetailViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     val result = response.body()
                     detailPost.value = result?.writing
-
                     Log.d("Retrofit2", "onResponse: 성공 Detail")
                 } else {
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
