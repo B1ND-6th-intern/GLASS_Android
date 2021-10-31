@@ -10,6 +10,7 @@ import kr.hs.dgsw.smartschool.glass_android.network.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 
 class DetailViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
@@ -19,6 +20,10 @@ class DetailViewModel: ViewModel() {
     val onEmptyCommentEvent = SingleLiveEvent<Unit>()
     val onUploadEvent = SingleLiveEvent<Unit>()
     val writingId = MutableLiveData<String>()
+    val onMenuEvent = SingleLiveEvent<Unit>()
+
+    // 성공 : 1, 실패 : 0
+    val statusDeletePost = MutableLiveData<Int>()
 
     fun onClickBack() {
         onBackEvent.call()
@@ -83,5 +88,32 @@ class DetailViewModel: ViewModel() {
         }
     }
 
+    fun onClickMenu() {
+        onMenuEvent.call()
+    }
 
+    fun deletePost(id : String) {
+        val deletePostCall = RetrofitClient.detailInterface.deletingPost(id)
+
+        deletePostCall.enqueue(object : Callback<DeletePostResponse> {
+            override fun onResponse(
+                call: Call<DeletePostResponse>,
+                response: Response<DeletePostResponse>
+            ) {
+                if (response.isSuccessful) {
+                    statusDeletePost.value = 1
+                    Log.d("Retrofit2", "onResponse: 성공 deletePost")
+                } else {
+                    statusDeletePost.value = 0
+                    Log.d("Retrofit2", "onResponse: ${response.code()} deletePost")
+                }
+            }
+
+            override fun onFailure(call: Call<DeletePostResponse>, t: Throwable) {
+                statusDeletePost.value = 0
+                Log.d("Retrofit2", "onFailure: $t deletePost")
+            }
+
+        })
+    }
 }

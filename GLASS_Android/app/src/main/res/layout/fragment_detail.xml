@@ -34,6 +34,7 @@
                 android:id="@+id/btn_post_menu"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:onClick="@{() -> vm.onClickMenu()}"
                 android:layout_marginRight="17dp"
                 android:background="@drawable/ic_menu"
                 app:layout_constraintBottom_toBottomOf="parent"

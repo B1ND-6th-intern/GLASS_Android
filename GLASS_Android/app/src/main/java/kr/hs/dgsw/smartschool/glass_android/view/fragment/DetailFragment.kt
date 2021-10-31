@@ -1,6 +1,9 @@
 package kr.hs.dgsw.smartschool.glass_android.view.fragment
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +27,8 @@ class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     lateinit var detailViewModel: DetailViewModel
     val id: DetailFragmentArgs by navArgs()
+
+    val menuItems = arrayOf<String>("삭제하기", "수정하기(개발 예정)")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +54,7 @@ class DetailFragment : Fragment() {
         binding.commentsRecycler.scrollToPosition(commentsRecyclerAdapter.itemCount - 1)
 
         with(detailViewModel) {
+            val statusPost: Int = statusDeletePost.value?.toInt() ?: -1
             val _id = id.postId
             getDetailPost(_id)
 
@@ -70,6 +76,12 @@ class DetailFragment : Fragment() {
 
                 commentsRecyclerAdapter.recyclerCommentsList = it.comments
                 commentsRecyclerAdapter.notifyDataSetChanged()
+
+                if (it.isOwner) {
+                    binding.btnPostMenu.visibility = View.VISIBLE
+                } else {
+                    binding.btnPostMenu.visibility = View.GONE
+                }
             })
 
             commentsList.observe(this@DetailFragment.viewLifecycleOwner, {
@@ -94,6 +106,44 @@ class DetailFragment : Fragment() {
                 findNavController().navigate(R.id.action_detailFragment_to_main_home)
             })
 
+            // 메뉴 화면 AlertDialog 2개
+            onMenuEvent.observe(this@DetailFragment, {
+                AlertDialog.Builder(context).run {
+                    setTitle("게시물 메뉴")
+                    setItems(menuItems
+                    ) { dialog, which ->
+                        if (which == 0) {
+                            val eventHandler =
+                                DialogInterface.OnClickListener { p0, p1 ->
+                                    if (p1 == DialogInterface.BUTTON_POSITIVE) {
+                                        Toast.makeText(context, "게시물을 삭제합니다", Toast.LENGTH_SHORT).show()
+                                        deletePost(_id)
+                                        if (statusPost == 1) {
+                                            Toast.makeText(context, "삭제에 성공했습니다", Toast.LENGTH_SHORT).show()
+                                        } else if (statusPost == 0) {
+                                            Toast.makeText(context, "삭제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                                        }
+                                        findNavController().navigate(R.id.action_detailFragment_to_main_home)
+                                    } else if (p1 == DialogInterface.BUTTON_NEGATIVE) {
+                                        Toast.makeText(context, "취소", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            AlertDialog.Builder(context).run {
+                                setTitle("게시물 삭제하기")
+                                setMessage("정말로 삭제하시겠습니까?")
+                                setPositiveButton("네", eventHandler)
+                                setNegativeButton("아니오", eventHandler)
+                                show()
+                            }
+
+                        } else if (which == 1) {
+                            Toast.makeText(context, "개발 예정입니다", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    setPositiveButton("닫기", null)
+                    show()
+                }
+            })
 
         }
         return binding.root
