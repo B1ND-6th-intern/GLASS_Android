@@ -60,7 +60,7 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
 
                 binding.tvHashtags.text = "#" + binding.tvHashtags.text
 
-                var reAvartar: String = "http://10.80.162.123:8080/uploads${owner.avatar}"
+                var reAvartar: String = "http://101.101.209.184:8080/uploads${owner.avatar}"
 
                 Glide.with(binding.root)
                     .load(reAvartar)
