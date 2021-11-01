@@ -53,6 +53,14 @@
         <action
             android:id="@+id/action_main_profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_main_profile_to_detailFragment"
+            app:destination="@id/detailFragment" >
+            <argument
+                android:name="postId"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/postFragment"

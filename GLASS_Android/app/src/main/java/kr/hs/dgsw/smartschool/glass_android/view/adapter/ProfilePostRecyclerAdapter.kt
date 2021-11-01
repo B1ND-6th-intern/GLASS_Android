@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ItemProfilePostBinding
+import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.model.ProfilePost
 import kr.hs.dgsw.smartschool.glass_android.network.model.User
 import kr.hs.dgsw.smartschool.glass_android.network.response.ProfileWriting
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.item.MainPostItemViewModel
+import kr.hs.dgsw.smartschool.glass_android.viewmodel.item.ProfilePostViewModel
 
 class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     RecyclerView.Adapter<ProfilePostRecyclerAdapter.ProfilePostViewHolder>() {
@@ -33,13 +36,17 @@ class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     }
 
     override fun onBindViewHolder(holder: ProfilePostViewHolder, position: Int) {
-        holder.bind(profilePostList[position])
+        holder.bind(profilePostList[position], lifecycleOwner)
     }
 
     override fun getItemCount(): Int = profilePostList.size
 
     class ProfilePostViewHolder(private val binding: ItemProfilePostBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(profileWriting: ProfileWriting) {
+        fun bind(profileWriting: ProfileWriting, lifecycleOwner: LifecycleOwner) {
+            val viewModel = ProfilePostViewModel(profileWriting)
+            binding.vm = viewModel
+            binding.lifecycleOwner = lifecycleOwner
+
             // 준호
              var reUrl: String = "http://10.80.162.123:8080/uploads${profileWriting.imgs[0]}"
 
@@ -53,6 +60,12 @@ class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
                 .centerCrop()
                 .into(binding.btnProfilePost)
 
+            viewModel.onDetailEvent.observe(lifecycleOwner, {
+                onDetailClick.value = profileWriting._id
+            })
         }
+    }
+    companion object {
+        val onDetailClick = SingleLiveEvent<String>()
     }
 }

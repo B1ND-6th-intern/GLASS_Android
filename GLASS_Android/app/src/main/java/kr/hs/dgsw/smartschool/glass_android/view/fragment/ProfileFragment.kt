@@ -46,6 +46,11 @@ class ProfileFragment : Fragment() {
         with(profileViewModel) {
             getProfile()
 
+            ProfilePostRecyclerAdapter.onDetailClick.observe(this@ProfileFragment, {
+                val action = ProfileFragmentDirections.actionMainProfileToDetailFragment(it)
+                findNavController().navigate(action)
+            })
+
             onEditProfileEvent.observe(this@ProfileFragment, {
                 findNavController().navigate(R.id.action_main_profile_to_editProfileFragment)
             })

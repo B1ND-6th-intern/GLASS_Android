@@ -56,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
             })
 
             message.observe(this@SignUpActivity, {
-                Toast.makeText(this@SignUpActivity, "$message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SignUpActivity, "$it", Toast.LENGTH_SHORT).show()
             })
         }
     }
