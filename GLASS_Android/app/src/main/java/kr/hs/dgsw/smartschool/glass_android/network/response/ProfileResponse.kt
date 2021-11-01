@@ -5,5 +5,21 @@ data class ProfileResponse(
 )
 
 data class User(
-    val writings: List<Writings>
+    val name: String,
+    val grade: Int,
+    val classNumber: Int,
+    val stuNumber: Int,
+    val introduction: String,
+    val writings: List<ProfileWriting>,
+    val avatar: String,
+    val permission: Int
+)
+
+data class ProfileWriting(
+    val hashtags: List<String>,
+    val imgs: List<String>,
+    val text: String,
+    val _id: String,
+    var isLike: Boolean,
+    val likeCount: Int
 )

@@ -55,7 +55,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:gravity="bottom"
-                        android:text="1320"
+                        android:text="0000"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"

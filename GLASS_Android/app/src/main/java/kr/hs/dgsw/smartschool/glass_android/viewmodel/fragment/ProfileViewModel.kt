@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.response.MyProfileResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.ProfileResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.User
+import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,7 +42,7 @@ class ProfileViewModel: ViewModel() {
                                 val result2 = infoResponse.body()
                                 userInfo.value = result2?.user
 
-                                Log.d("Retrofit2", "onResponse: 성공 프로필")
+                                Log.d("Retrofit2", "onResponse: 성공 프로필 ${userInfo.value}")
                             } else {
                                 Log.d("Retrofit2", "onResponse: ${infoResponse.code()} 프로필")
                             }

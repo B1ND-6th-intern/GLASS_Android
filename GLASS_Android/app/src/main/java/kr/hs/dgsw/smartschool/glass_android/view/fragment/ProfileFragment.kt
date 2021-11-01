@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.ProfilePost
+import kr.hs.dgsw.smartschool.glass_android.network.response.User
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.view.adapter.ProfilePostRecyclerAdapter
@@ -49,12 +50,22 @@ class ProfileFragment : Fragment() {
             })
 
             userInfo.observe(this@ProfileFragment.viewLifecycleOwner, {
-                binding.tvProfileName.text = it.writings[0].owner.name
-                binding.tvJob.text = it.writings[0].owner.grade.toString() + it.writings[0].owner.classNumber.toString() + it.writings[0].owner.stuNumber.toString()
+                binding.tvProfileName.text = it.name
+                when(it.permission) {
+                    0 -> {
+                        // 학생
+                        binding.tvJob.text = it.grade.toString() + it.classNumber.toString() + it.stuNumber.toString()
+                    }
+                    1 -> {
+                        // 학부모
+                        binding.tvJob.text = "학부모"
+                    }
+                    2 -> {
+                        // 교직원
+                        binding.tvJob.text = "교직원"
+                    }
+                }
 
-
-//                homeRecyclerAdapter.recyclerPostList = it
-//                homeRecyclerAdapter.notifyDataSetChanged()
                 profilePostRecyclerAdapter.profilePostList = it.writings
                 profilePostRecyclerAdapter.notifyDataSetChanged()
             })
