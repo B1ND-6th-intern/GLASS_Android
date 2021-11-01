@@ -9,8 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient{
-    private const val BASE_URL = "http://10.80.162.123:8080/"     // 준호
+    //private const val BASE_URL = "http://10.80.162.123:8080/"     // 준호
     //private const val BASE_URL = "http://10.80.163.231:8080/"       // 준성
+    private const val BASE_URL = "http://101.101.209.184:8080"
 
     val loginInterface: Login
     val signUpInterface: SignUp
@@ -20,6 +21,11 @@ object RetrofitClient{
     val detailInterface: Detail
     val commentUploadInterface : CommentUpload
     val popularPostInterface: PopularPost
+    val myProfileInterface: MyProfile
+    val profileInterface: Profile
+    val likeInterface : Like
+    val profileEditInterface : ProfileEdit
+    val profileEditAvatarInterface : ProfileEditAvatar
 
     init {
         val gson = GsonBuilder().setLenient().create()
@@ -46,5 +52,10 @@ object RetrofitClient{
         detailInterface = instance.create(Detail::class.java)
         commentUploadInterface = instance.create(CommentUpload::class.java)
         popularPostInterface = instance.create(PopularPost::class.java)
+        myProfileInterface = instance.create(MyProfile::class.java)
+        profileInterface = instance.create(Profile::class.java)
+        likeInterface = instance.create(Like::class.java)
+        profileEditInterface = instance.create(ProfileEdit::class.java)
+        profileEditAvatarInterface = instance.create(ProfileEditAvatar::class.java)
     }
 }

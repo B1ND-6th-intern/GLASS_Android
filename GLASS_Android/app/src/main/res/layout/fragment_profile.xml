@@ -24,8 +24,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/btn_setting"
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/iv_profile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="20dp"
@@ -39,7 +39,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_setting"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
@@ -55,7 +55,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:gravity="bottom"
-                        android:text="1320"
+                        android:text="0000"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,13 +83,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_post_num"
+                        android:id="@+id/tv_profile_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:gravity="bottom"
-                        android:text="14"
+                        android:text="테스트"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +102,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:textStyle="bold"
-                        android:text="게시물"
+                        android:text="이름"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintStart_toEndOf="@+id/btn_setting"
@@ -125,21 +125,13 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
             <TextView
-                android:id="@+id/tv_profile_name"
+                android:id="@+id/tv_introduce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="최민재"
+                android:text="test 자기소개"
+                android:textSize="19sp"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_profile_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="testemail@dgsw.hs.kr"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_edit_profile"
@@ -149,6 +141,7 @@
                 android:onClick="@{() -> vm.onClickBtnEditProfile()}"
                 android:background="@drawable/btn_profile_edit_design"
                 android:text="프로필 편집" />
+
         </LinearLayout>
 
         <View

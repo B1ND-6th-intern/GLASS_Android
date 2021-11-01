@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.glass_android.view.activity
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -10,6 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivityLoginBinding
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.LoginViewModel
+import android.app.Activity
+
+import android.content.SharedPreferences
+import android.os.TokenWatcher
+
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -24,20 +28,33 @@ class LoginActivity : AppCompatActivity() {
         performDataBinding()
 
         with(loginViewModel) {
+            val autoPref = getSharedPreferences(TOKEN_PREFERENCE, Activity.MODE_PRIVATE)
+            email.value = autoPref.getString("userEmail", null)
+            password.value = autoPref.getString("userPassword", null)
+            if (email.value != null && password.value != null) {
+                onClickLogin()
+            }
+
             onLoginEvent.observe(this@LoginActivity, {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             })
 
             token.observe(this@LoginActivity, {
                 val sharedPref = applicationContext.getSharedPreferences(TOKEN_PREFERENCE, Context.MODE_PRIVATE)
 
                 with(sharedPref.edit()) {
+                    if(binding.checkAutoLogin.isChecked) {
+                        putString("userEmail", email.value)
+                        putString("userPassword", password.value)
+                    }
                     putString("token", it)
                     apply()
                 }
             })
+
+
 
             onSignUpEvent.observe(this@LoginActivity, {
                 val intent = Intent(this@LoginActivity, SelectJobActivity::class.java)

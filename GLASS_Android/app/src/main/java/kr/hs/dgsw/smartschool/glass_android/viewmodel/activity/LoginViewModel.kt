@@ -29,8 +29,6 @@ class LoginViewModel : ViewModel() {
                     Log.d("Retrofit2", "연결 성공")
 
                     val result = response.body()
-                    var status = result?.status
-                    var message = result?.message
                     token.value = result?.token
 
                     onLoginEvent.call()

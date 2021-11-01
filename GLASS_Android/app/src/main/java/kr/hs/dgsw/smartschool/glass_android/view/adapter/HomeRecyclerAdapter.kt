@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.glass_android.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -59,13 +60,20 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
 
                 binding.tvHashtags.text = "#" + binding.tvHashtags.text
 
-                var reAvartar: String = "http://10.80.162.123:8080/uploads${owner.avatar}"
+                var reAvartar: String = "http://101.101.209.184:8080/uploads${owner.avatar}"
 
                 Glide.with(binding.root)
                     .load(reAvartar)
                     .error(R.drawable.ic_img_profile)
                     .centerCrop()
                     .into(binding.ivUserProfile)
+
+                Log.d("TESTTEST", "bind: $isLike")
+                if (isLike) {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_blue)
+                } else {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
+                }
             }
 
             val postedImgAdapter = PostedImgAdapter(writings.imgs)
@@ -76,6 +84,14 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
 
             viewModel.onHeartEvent.observe(lifecycleOwner, {
                 onHeartClick.value = writings._id
+
+                if (!writings.isLike) {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_blue)
+                    writings.isLike = true
+                } else {
+                    binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
+                    writings.isLike = false
+                }
             })
             viewModel.onCommentEvent.observe(lifecycleOwner, {
                 onCommentClick.value = writings._id

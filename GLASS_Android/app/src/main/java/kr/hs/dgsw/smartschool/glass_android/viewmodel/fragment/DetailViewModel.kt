@@ -10,6 +10,7 @@ import kr.hs.dgsw.smartschool.glass_android.network.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 
 class DetailViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
@@ -19,6 +20,11 @@ class DetailViewModel: ViewModel() {
     val onEmptyCommentEvent = SingleLiveEvent<Unit>()
     val onUploadEvent = SingleLiveEvent<Unit>()
     val writingId = MutableLiveData<String>()
+    val onMenuEvent = SingleLiveEvent<Unit>()
+    val onHeartEvent = SingleLiveEvent<Unit>()
+
+    // 성공 : 1, 실패 : 0
+    val statusDeletePost = MutableLiveData<Int>()
 
     fun onClickBack() {
         onBackEvent.call()
@@ -35,7 +41,6 @@ class DetailViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     val result = response.body()
                     detailPost.value = result?.writing
-
                     Log.d("Retrofit2", "onResponse: 성공 Detail")
                 } else {
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
@@ -83,5 +88,55 @@ class DetailViewModel: ViewModel() {
         }
     }
 
+    fun onClickMenu() {
+        onMenuEvent.call()
+    }
 
+    fun deletePost(id : String) {
+        val deletePostCall = RetrofitClient.detailInterface.deletingPost(id)
+
+        deletePostCall.enqueue(object : Callback<DeletePostResponse> {
+            override fun onResponse(
+                call: Call<DeletePostResponse>,
+                response: Response<DeletePostResponse>
+            ) {
+                if (response.isSuccessful) {
+                    statusDeletePost.value = 1
+                    Log.d("Retrofit2", "onResponse: 성공 deletePost")
+                } else {
+                    statusDeletePost.value = 0
+                    Log.d("Retrofit2", "onResponse: ${response.code()} deletePost")
+                }
+            }
+
+            override fun onFailure(call: Call<DeletePostResponse>, t: Throwable) {
+                statusDeletePost.value = 0
+                Log.d("Retrofit2", "onFailure: $t deletePost")
+            }
+
+        })
+    }
+
+    fun onClickHeart() {
+        onHeartEvent.call()
+    }
+
+    fun onClickLikeBtn(id: String) {
+        val clickLikeCall = RetrofitClient.likeInterface.editLike(id)
+
+        clickLikeCall.enqueue(object : Callback<LikeResponse> {
+            override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("Retrofit2", "onResponse: 성공 like")
+                } else {
+                    Log.d("Retrofit2", "onResponse: ${response.code()} like")
+                }
+            }
+
+            override fun onFailure(call: Call<LikeResponse>, t: Throwable) {
+                Log.d("Retrofit2", "onFailure: $t like")
+            }
+
+        })
+    }
 }

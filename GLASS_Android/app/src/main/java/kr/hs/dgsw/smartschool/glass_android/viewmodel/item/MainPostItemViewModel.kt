@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.glass_android.viewmodel.item
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
