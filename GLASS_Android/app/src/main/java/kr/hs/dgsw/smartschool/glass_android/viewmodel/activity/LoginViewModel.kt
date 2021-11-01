@@ -18,7 +18,6 @@ class LoginViewModel : ViewModel() {
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
-
     val token = MutableLiveData<String>()
 
     fun onClickLogin() {

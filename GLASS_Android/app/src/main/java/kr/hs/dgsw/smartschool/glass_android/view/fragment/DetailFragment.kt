@@ -25,7 +25,7 @@ import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.DetailViewModel
 
 class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
-    lateinit var detailViewModel: DetailViewModel 
+    lateinit var detailViewModel: DetailViewModel
     var statusHeart: Boolean = false
     val id: DetailFragmentArgs by navArgs()
 
