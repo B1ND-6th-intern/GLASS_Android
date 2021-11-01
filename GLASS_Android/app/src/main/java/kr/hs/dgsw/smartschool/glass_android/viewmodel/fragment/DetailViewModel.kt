@@ -21,6 +21,7 @@ class DetailViewModel: ViewModel() {
     val onUploadEvent = SingleLiveEvent<Unit>()
     val writingId = MutableLiveData<String>()
     val onMenuEvent = SingleLiveEvent<Unit>()
+    val onHeartEvent = SingleLiveEvent<Unit>()
 
     // 성공 : 1, 실패 : 0
     val statusDeletePost = MutableLiveData<Int>()
@@ -111,6 +112,29 @@ class DetailViewModel: ViewModel() {
             override fun onFailure(call: Call<DeletePostResponse>, t: Throwable) {
                 statusDeletePost.value = 0
                 Log.d("Retrofit2", "onFailure: $t deletePost")
+            }
+
+        })
+    }
+
+    fun onClickHeart() {
+        onHeartEvent.call()
+    }
+
+    fun onClickLikeBtn(id: String) {
+        val clickLikeCall = RetrofitClient.likeInterface.editLike(id)
+
+        clickLikeCall.enqueue(object : Callback<LikeResponse> {
+            override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("Retrofit2", "onResponse: 성공 like")
+                } else {
+                    Log.d("Retrofit2", "onResponse: ${response.code()} like")
+                }
+            }
+
+            override fun onFailure(call: Call<LikeResponse>, t: Throwable) {
+                Log.d("Retrofit2", "onFailure: $t like")
             }
 
         })
