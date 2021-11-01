@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.glass_android.network.model.ProfilePost
@@ -51,6 +52,16 @@ class ProfileFragment : Fragment() {
 
             userInfo.observe(this@ProfileFragment.viewLifecycleOwner, {
                 binding.tvProfileName.text = it.name
+                binding.tvIntroduce.text = it.introduction
+
+                var reUrl: String = "http://10.80.162.123:8080/uploads${it.avatar}"
+
+                Glide.with(binding.root)
+                    .load(reUrl)
+                    .error(R.drawable.ic_img_profile)
+                    .centerCrop()
+                    .into(binding.ivProfile)
+
                 when(it.permission) {
                     0 -> {
                         // 학생

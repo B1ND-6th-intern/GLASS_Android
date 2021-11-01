@@ -41,10 +41,10 @@ class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
     class ProfilePostViewHolder(private val binding: ItemProfilePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(profileWriting: ProfileWriting) {
             // 준호
-            // var reUrl: String = "http://10.80.162.123:8080/uploads${profileWriting.imgs[0]}"
+             var reUrl: String = "http://10.80.162.123:8080/uploads${profileWriting.imgs[0]}"
 
             // 준성
-            var reUrl: String = "http://10.80.163.231:8080/uploads${profileWriting.imgs[0]}"
+            //var reUrl: String = "http://10.80.163.231:8080/uploads${profileWriting.imgs[0]}"
 
 
             Glide.with(binding.root)

@@ -79,8 +79,9 @@
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.22658243079467025" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.2233743423077209" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_post.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout/fragment_post_item.xml" value="0.14895833333333333" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17123262067476402" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.10493827160493827" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/item_comments_recycler.xml" value="0.1" />

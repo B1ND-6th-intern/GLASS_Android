@@ -55,16 +55,15 @@ class EditProfileViewModel : ViewModel() {
             override fun onFailure(call: Call<ProfileEditResponse>, t: Throwable) {
                 Log.d("Retrofit2", "onFailure: $t editProfile")
             }
-
         })
     }
 
     fun onClickAvatarCheck() {
         val avatarCall = RetrofitClient.profileEditAvatarInterface.editProfileAvatar(
             avatar.value?.map { MultipartBody.Part.createFormData(
-                "newAvatar",
+                "img",
                 it.name,
-                RequestBody.create("image/${it.name.split(".")[1]}".toMediaTypeOrNull(), it)
+                RequestBody.create("avatars/${it.name.split(".")[1]}".toMediaTypeOrNull(), it)
             )}
         )
 
@@ -84,7 +83,6 @@ class EditProfileViewModel : ViewModel() {
             override fun onFailure(call: Call<ProfileEditAvatarResponse>, t: Throwable) {
                 Log.d("Retrofit2", "onFailure: $t edit avatar")
             }
-
         })
     }
 
