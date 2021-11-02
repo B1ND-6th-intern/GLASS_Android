@@ -13,6 +13,7 @@ import android.app.Activity
 
 import android.content.SharedPreferences
 import android.os.TokenWatcher
+import android.widget.Toast
 
 
 class LoginActivity : AppCompatActivity() {
@@ -54,7 +55,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
-
+            message.observe(this@LoginActivity, {
+                Toast.makeText(this@LoginActivity, "${message.value}", Toast.LENGTH_SHORT).show()
+            })
 
             onSignUpEvent.observe(this@LoginActivity, {
                 val intent = Intent(this@LoginActivity, SelectJobActivity::class.java)

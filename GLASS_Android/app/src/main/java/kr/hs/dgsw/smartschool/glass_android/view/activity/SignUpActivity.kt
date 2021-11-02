@@ -43,10 +43,6 @@ class SignUpActivity : AppCompatActivity() {
                 binding.editNumber.visibility = View.GONE
             }
 
-            onEmailEvent.observe(this@SignUpActivity, {
-                Toast.makeText(applicationContext, "재전송 횟수는 총 $sendCount 회 남았습니다", Toast.LENGTH_SHORT).show()
-            })
-
             onBackSelectEvent.observe(this@SignUpActivity, {
                 finish()
             })

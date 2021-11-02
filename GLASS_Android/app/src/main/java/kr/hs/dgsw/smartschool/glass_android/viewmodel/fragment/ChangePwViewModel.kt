@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.ChangePwRequest
 import kr.hs.dgsw.smartschool.glass_android.network.response.ChangePwResponse
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.PopularPostResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
 import retrofit2.Call
@@ -19,6 +20,8 @@ class ChangePwViewModel: ViewModel() {
     val oldPassword = MutableLiveData<String>()
     val newPassword = MutableLiveData<String>()
     val newPasswordConfirmation = MutableLiveData<String>()
+
+    val message = MutableLiveData<String>()
 
     fun onClickBack() {
         onBackEvent.call()
@@ -41,6 +44,9 @@ class ChangePwViewModel: ViewModel() {
                         Log.d("Retrofit2", "onResponse: 성공 changePw")
                         onChangePwEvent.call()
                     } else {
+                        val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                        message.value = errorBody?.error
                         Log.d("Retrofit2", "onResponse: ${response.code()} changePw")
                     }
                 }

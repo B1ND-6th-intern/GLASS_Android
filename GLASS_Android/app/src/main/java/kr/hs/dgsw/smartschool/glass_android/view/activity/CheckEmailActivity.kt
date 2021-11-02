@@ -27,14 +27,16 @@ class CheckEmailActivity : AppCompatActivity() {
                 val intent = Intent(this@CheckEmailActivity, LoginActivity::class.java)
                 startActivity(intent)
             })
-            onResendEmailEvent.observe(this@CheckEmailActivity, {
-                Toast.makeText(this@CheckEmailActivity, "재전송 되었습니다!\n횟수는 총 $sendCount 회 남았습니다", Toast.LENGTH_SHORT).show()
-            })
+
             onExceedCount.observe(this@CheckEmailActivity, {
                 Toast.makeText(this@CheckEmailActivity, "재전송 횟수가 초과했습니다!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@CheckEmailActivity, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
+            })
+
+            message.observe(this@CheckEmailActivity, {
+                Toast.makeText(applicationContext, "${message.value}", Toast.LENGTH_SHORT).show()
             })
         }
     }

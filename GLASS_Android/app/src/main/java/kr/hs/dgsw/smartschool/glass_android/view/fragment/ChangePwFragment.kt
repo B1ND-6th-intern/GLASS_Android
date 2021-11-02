@@ -11,14 +11,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentChangePwBinding
-import kr.hs.dgsw.smartschool.glass_android.databinding.FragmentSearchBinding
 import kr.hs.dgsw.smartschool.glass_android.view.activity.LoginActivity
 import kr.hs.dgsw.smartschool.glass_android.view.activity.MainActivity
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.ChangePwViewModel
-import kr.hs.dgsw.smartschool.glass_android.viewmodel.fragment.SearchViewModel
 
 class ChangePwFragment : Fragment() {
     lateinit var binding: FragmentChangePwBinding
@@ -60,6 +57,10 @@ class ChangePwFragment : Fragment() {
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
+            })
+
+            message.observe(this@ChangePwFragment.viewLifecycleOwner, {
+                Toast.makeText(context, "${message.value}", Toast.LENGTH_SHORT).show()
             })
         }
         return binding.root

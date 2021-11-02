@@ -51,8 +51,14 @@ class HomeRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
                 binding.tvPostUserName.text = writings.owner.name
                 binding.tvPostContent.text = text
                 binding.tvPostName.text = writings.owner.name
-                binding.tvPostUserNum.text =
-                    writings.owner.grade.toString() + writings.owner.classNumber.toString() + writings.owner.stuNumber.toString()
+                if (owner.permission == 0) {
+                    binding.tvPostUserNum.text =
+                        writings.owner.grade.toString() + writings.owner.classNumber.toString() + writings.owner.stuNumber.toString()
+                } else if (owner.permission == 1) {
+                    binding.tvPostUserNum.text = "학부모"
+                } else if (owner.permission == 2) {
+                    binding.tvPostUserNum.text = "선생님"
+                }
                 binding.tvHashtags.text = ""
                 for (i in 0 until hashtags.count())
                     binding.tvHashtags.text =

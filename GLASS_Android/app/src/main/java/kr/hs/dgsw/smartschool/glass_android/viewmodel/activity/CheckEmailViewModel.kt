@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.glass_android.viewmodel.activity
 
-import android.app.Activity
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
@@ -10,30 +8,28 @@ import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.ConfirmRequest
 import kr.hs.dgsw.smartschool.glass_android.network.response.ConfirmResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.EmailResponse
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
-import kotlin.coroutines.coroutineContext
+
 
 class CheckEmailViewModel : ViewModel() {
     val onCheckEvent = SingleLiveEvent<Unit>()
     val onBackSignUpEvent = SingleLiveEvent<Unit>()
-    val onResendEmailEvent = SingleLiveEvent<Unit>()
     val onExceedCount = SingleLiveEvent<Unit>()
+
 
     val confirm = MutableLiveData<String>()
     val timeover: Boolean = false
 
     var sendCount: Int = 5
-    val message: String = ""
+    val message = MutableLiveData<String>()
 
     fun onClickCheck() {
         val confirmRequest = ConfirmRequest(
             confirm.value!!.toInt(),
             timeover
         )
-
-
         RetrofitClient.confirmInterface.sendConfirm(confirmRequest)
             .enqueue(object : retrofit2.Callback<ConfirmResponse> {
                 override fun onResponse(
@@ -43,6 +39,9 @@ class CheckEmailViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         onCheckEvent.call()
                     } else {
+                        val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                        message.value = errorBody?.error
                         Log.d("Retrofit2", "onResponse: oh fuck")
                     }
                 }
@@ -58,29 +57,27 @@ class CheckEmailViewModel : ViewModel() {
         val emailResponse = RetrofitClient.signUpInterface.sendEmail()
 
         // Email 보내기
-        if (sendCount != 0) {
-            emailResponse.enqueue(object : retrofit2.Callback<EmailResponse> {
-                override fun onResponse(
-                    emailCall: Call<EmailResponse>,
-                    emailResponse: Response<EmailResponse>
-                ) {
-                    if (emailResponse.isSuccessful) {
-                        onResendEmailEvent.call()
-                        sendCount -= 1
-                    } else {
-                        Log.d("Retrofit2", "onResponse: oh no")
-                    }
+        emailResponse.enqueue(object : retrofit2.Callback<EmailResponse> {
+            override fun onResponse(
+                emailCall: Call<EmailResponse>,
+                emailResponse: Response<EmailResponse>
+            ) {
+                if (emailResponse.isSuccessful) {
+                    val result = emailResponse.body()
+                    message.value = result?.message
+                    Log.d("Retrofit2", "onResponse: 성공")
+                } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(emailResponse.errorBody())
+                    message.value = errorBody?.error
+                    Log.d("Retrofit2", "onResponse: oh no")
                 }
+            }
 
-                override fun onFailure(emailCall: Call<EmailResponse>, t: Throwable) {
-                    Log.d("Retrofit2", "onFailure: $t")
-                }
-            })
-        } else {
-            onExceedCount.call()
-        }
+            override fun onFailure(emailCall: Call<EmailResponse>, t: Throwable) {
+                Log.d("Retrofit2", "onFailure: $t")
+            }
+        })
     }
-
     fun onClickBackSignUp() {
         onBackSignUpEvent.call()
     }

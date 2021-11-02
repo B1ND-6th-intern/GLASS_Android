@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.LoginRequest
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,6 +15,8 @@ import retrofit2.Response
 class LoginViewModel : ViewModel() {
     val onLoginEvent = SingleLiveEvent<Unit>()
     val onSignUpEvent = SingleLiveEvent<Unit>()
+
+    val message = MutableLiveData<String>()
 
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -33,6 +36,9 @@ class LoginViewModel : ViewModel() {
 
                     onLoginEvent.call()
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "연결 실패")
                 }
             }

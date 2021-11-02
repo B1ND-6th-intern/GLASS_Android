@@ -73,8 +73,8 @@ class PostFragment : Fragment() {
                 Toast.makeText(activity, "포스팅에 성공했습니다.", Toast.LENGTH_SHORT).show()
             })
 
-            onErrorEvent.observe(this@PostFragment, {
-                Toast.makeText(context, "${error}", Toast.LENGTH_SHORT).show()
+            message.observe(this@PostFragment.viewLifecycleOwner, {
+                Toast.makeText(activity, "${message.value}", Toast.LENGTH_SHORT).show()
             })
         }
         return binding.root

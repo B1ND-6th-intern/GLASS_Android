@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.SecondPostingRequest
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.FirstPostingResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.SecondPostingResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -20,7 +21,6 @@ class PostViewModel: ViewModel() {
     val onBackEvent = SingleLiveEvent<Unit>()
     val onImageEvent = SingleLiveEvent<Unit>()
     val onPostEvent = SingleLiveEvent<Unit>()
-    val onErrorEvent = SingleLiveEvent<Unit>()
     val onSuccessEvent = SingleLiveEvent<Unit>()
 
     // first
@@ -36,7 +36,7 @@ class PostViewModel: ViewModel() {
 
     val token = MutableLiveData<String>()
 
-    var error : String = ""
+    val message = MutableLiveData<String>()
 
     fun onClickBtnAddImage() {
         onImageEvent.call()
@@ -80,31 +80,26 @@ class PostViewModel: ViewModel() {
                                 onSuccessEvent.call()
                             } else {
                                 Log.d("Retrofit2", "onResponse: 실패 ${secondResponse.code()}")
-                                // TODO : Error Message
-                                error = secondResponse.body()?.error ?: "흐음.."
-                                onErrorEvent.call()
+                                val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(secondResponse.errorBody())
+                                message.value = errorBody?.error
                             }
                         }
-
                         override fun onFailure(seconCall: Call<SecondPostingResponse>, secondT: Throwable) {
                             Log.d("Retrofit2", "onFailure: $secondT")
-                            onErrorEvent.call()
                         }
-
                     })
-
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: 실패 400 ${response.code()}")
                 }
             }
-
             override fun onFailure(call: Call<FirstPostingResponse>, t: Throwable) {
                 Log.d("Retrofit2", "onFailure: $t")
             }
-
         })
     }
-
     fun onClickBtnBack() {
         onBackEvent.call()
     }

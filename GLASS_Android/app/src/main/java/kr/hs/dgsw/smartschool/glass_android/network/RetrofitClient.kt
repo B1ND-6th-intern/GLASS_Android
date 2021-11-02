@@ -27,22 +27,22 @@ object RetrofitClient{
     val profileEditAvatarInterface : ProfileEditAvatar
     val settingInterface: Setting
 
+    private val gson = GsonBuilder().setLenient().create()
+    private val intercepter = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    private val logger = OkHttpClient.Builder().addInterceptor(intercepter).addInterceptor(TokenInterceptor())
+        .connectTimeout(100, TimeUnit.SECONDS)
+        .readTimeout(100, TimeUnit.SECONDS)
+        .writeTimeout(100, TimeUnit.SECONDS)
+        .build()
+
+    val instance: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(logger)
+        .build()
+
     init {
-        val gson = GsonBuilder().setLenient().create()
-        val intercepter = HttpLoggingInterceptor()
-        intercepter.level = HttpLoggingInterceptor.Level.BODY
-
-        val logger = OkHttpClient.Builder().addInterceptor(intercepter).addInterceptor(TokenInterceptor())
-            .connectTimeout(100, TimeUnit.SECONDS)
-            .readTimeout(100, TimeUnit.SECONDS)
-            .writeTimeout(100, TimeUnit.SECONDS)
-            .build()
-
-        val instance = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(logger)
-            .build()
 
         loginInterface = instance.create(Login::class.java)
         signUpInterface = instance.create(SignUp::class.java)

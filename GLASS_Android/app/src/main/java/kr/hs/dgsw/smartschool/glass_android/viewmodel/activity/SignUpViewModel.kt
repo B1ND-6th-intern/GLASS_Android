@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.SignUpRequest
 import kr.hs.dgsw.smartschool.glass_android.network.response.EmailResponse
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,7 +20,6 @@ class SignUpViewModel : ViewModel() {
 
     val onEmailEvent = SingleLiveEvent<Unit>()
 
-    var sendCount: Int = 6
     val message = MutableLiveData<String>()
 
 
@@ -73,9 +73,10 @@ class SignUpViewModel : ViewModel() {
                                     emailResponse: Response<EmailResponse>
                                 ) {
                                     if (emailResponse.isSuccessful) {
-                                        onEmailEvent.call()
-                                        sendCount -= 1
+                                        Log.d("Retrofit2", "onResponse: 성공")
                                     } else {
+                                        val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(emailResponse.errorBody())
+                                        message.value = errorBody?.error
                                         Log.d("Retrofit2", "onResponse: oh no")
                                     }
                                 }
@@ -90,12 +91,13 @@ class SignUpViewModel : ViewModel() {
 
                         } else {
                             Log.d("Retrofit2", "onResponse: ${response.code()}")
-
-                            message.value = response.errorBody().toString()
+                            val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                            message.value = errorBody?.error
                         }
                     }
 
                     override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                        message.value = "서버 오류입니다."
                         Log.d("Retrofit2", "onFailure: $t")
                     }
 
