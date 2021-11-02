@@ -40,6 +40,8 @@ class EditProfileFragment : Fragment() {
             false
         )
         performViewModel()
+        binding.editChangeName.setText(ProfileFragment.UNITE_NAME)
+        binding.editChangeIntroduce.setText(ProfileFragment.UNITE_INTRO)
 
         with(editProfileViewModel) {
             onBackProfileEvent.observe(this@EditProfileFragment, {

@@ -23,6 +23,11 @@ class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
     lateinit var profileViewModel: ProfileViewModel
 
+    companion object {
+        var UNITE_NAME : String = ""
+        var UNITE_INTRO : String = ""
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setNavVisible(true)
@@ -58,7 +63,9 @@ class ProfileFragment : Fragment() {
 
             userInfo.observe(this@ProfileFragment.viewLifecycleOwner, {
                 binding.tvProfileName.text = it.name
+                UNITE_NAME = it.name
                 binding.tvIntroduce.text = it.introduction
+                UNITE_INTRO = it.introduction
 
                 var reUrl: String = "http://api.glass.b1nd.com/uploads${it.avatar}"
 
