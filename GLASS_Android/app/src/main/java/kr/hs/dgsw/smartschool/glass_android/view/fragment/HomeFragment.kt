@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setNavVisible(true)
         (activity as? MainActivity)?.binding?.btnSetting?.visibility = View.GONE
+        (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.VISIBLE
     }
 
     override fun onCreateView(

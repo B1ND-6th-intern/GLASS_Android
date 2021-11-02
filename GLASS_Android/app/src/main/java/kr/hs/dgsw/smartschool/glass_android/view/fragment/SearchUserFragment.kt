@@ -48,9 +48,9 @@ class SearchUserFragment : Fragment() {
         binding.searchUserRecycler.adapter = searchUserRecyclerAdapter
 
         searchUserList.apply {
-            add(SearchUser("https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg", "1320 최민재", "안늉"))
-            add(SearchUser("https://image.msscdn.net/data/curating/16948/16948_1_org.jpg", "교직원 이광남", "턱이 정말 깁니다."))
-            add(SearchUser("https://img.hankyung.com/photo/201807/01.17324227.1.jpg", "학부모 우준성", "경태 조련사입니다"))
+            add(SearchUser("https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg", "1320 최민재", "개발 예정입니다ㅠ"))
+            //add(SearchUser("https://image.msscdn.net/data/curating/16948/16948_1_org.jpg", "교직원 이광남", "턱이 정말 깁니다."))
+            //add(SearchUser("https://img.hankyung.com/photo/201807/01.17324227.1.jpg", "학부모 우준성", "경태 조련사입니다"))
         }
         searchUserRecyclerAdapter.searchUserList = searchUserList
         searchUserRecyclerAdapter.notifyDataSetChanged()

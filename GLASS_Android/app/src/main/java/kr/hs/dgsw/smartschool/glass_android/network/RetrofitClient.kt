@@ -10,9 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient{
 
-    //private const val BASE_URL = "http://10.80.162.123:8080/"     // 준호
-    //private const val BASE_URL = "http://10.80.163.231:8080/"       // 준성
-    private const val BASE_URL = "http://101.101.209.184:8080"
+    private const val BASE_URL = "http://api.glass.b1nd.com"
 
     val loginInterface: Login
     val signUpInterface: SignUp

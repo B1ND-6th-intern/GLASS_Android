@@ -16,7 +16,7 @@ android {
         applicationId "kr.hs.dgsw.smartschool.glass_android"
         minSdkVersion 21
         targetSdkVersion 30
-        multiDexEnabled true
+        multiDexEnabled true 
         versionCode 1
         versionName "1.0"
 
