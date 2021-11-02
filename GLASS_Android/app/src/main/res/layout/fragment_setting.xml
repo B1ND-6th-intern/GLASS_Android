@@ -24,8 +24,8 @@
 
             <ImageButton
                 android:id="@+id/btn_back_profile"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/ic_btn_back"
                 android:onClick="@{() -> vm.onClickBtnBackProfile()}"
@@ -47,24 +47,45 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" >
 
-
-            <fragment
-                android:id="@+id/fragment"
-                class="kr.hs.dgsw.smartschool.glass_android.view.fragment.MainSettingFragment"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:text="개인 설정"
+                android:textSize="17sp"
+                android:textColor="@color/main"
+                android:layout_margin="10dp" />
 
-        </FrameLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BFBFBF"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="@{() -> vm.onClickPassword()}"
+                android:text="비밀번호 변경"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BFBFBF"/>
+
+
+        </LinearLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"

@@ -74,19 +74,22 @@
         <entry key="app/src/main/res/drawable/btn_heart_w.xml" value="0.165625" />
         <entry key="app/src/main/res/drawable/button_design.xml" value="0.165625" />
         <entry key="app/src/main/res/drawable/edit_signup.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/drawable/ic_btn_back.xml" value="0.165625" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/layout/activity_check_email.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14635416666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/layout/activity_select_job.xml" value="0.14947916666666666" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.14635416666666667" />
+        <entry key="app/src/main/res/layout/fragment_change_pw.xml" value="0.23170708010444224" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.22658243079467025" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.2233743423077209" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_post.xml" value="0.1234375" />
-        <entry key="app/src/main/res/layout/fragment_post_item.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/fragment_post_item.xml" value="0.2314364250669314" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17123262067476402" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.10493827160493827" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.13256237107828375" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.17180205415499533" />
         <entry key="app/src/main/res/layout/item_comments_recycler.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_home_posted_img.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/item_popular_post.xml" value="0.14947916666666666" />

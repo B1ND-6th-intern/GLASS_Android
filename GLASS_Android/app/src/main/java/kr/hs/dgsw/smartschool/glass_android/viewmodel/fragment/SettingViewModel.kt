@@ -6,6 +6,7 @@ import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 class SettingViewModel : ViewModel() {
     val onBackProfileEvent = SingleLiveEvent<Unit>()
     val onLogoutEvent = SingleLiveEvent<Unit>()
+    val onChangePasswordEvent = SingleLiveEvent<Unit>()
 
     fun onClickBtnBackProfile() {
         onBackProfileEvent.call()
@@ -13,5 +14,9 @@ class SettingViewModel : ViewModel() {
 
     fun onClickLogout() {
         onLogoutEvent.call()
+    }
+
+    fun onClickPassword() {
+        onChangePasswordEvent.call()
     }
 }

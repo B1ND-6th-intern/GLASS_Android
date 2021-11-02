@@ -156,13 +156,15 @@
 
             <TextView
                 android:id="@+id/tv_post_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="20dp"
                 android:text="테스트 내용입니다!"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:layout_marginLeft="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_post_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
