@@ -90,6 +90,7 @@ class SignUpViewModel : ViewModel() {
 
                         } else {
                             Log.d("Retrofit2", "onResponse: ${response.code()}")
+
                             message.value = response.errorBody().toString()
                         }
                     }

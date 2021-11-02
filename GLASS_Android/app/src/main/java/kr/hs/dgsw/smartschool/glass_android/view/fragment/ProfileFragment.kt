@@ -27,6 +27,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setNavVisible(true)
         (activity as? MainActivity)?.binding?.btnSetting?.visibility = View.VISIBLE
+        (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.GONE
     }
 
     override fun onCreateView(

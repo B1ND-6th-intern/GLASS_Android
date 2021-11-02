@@ -96,6 +96,9 @@
             app:destination="@id/main_profile"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingFragment_to_changePwFragment"
+            app:destination="@id/changePwFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -122,6 +125,16 @@
         <action
             android:id="@+id/action_detailFragment_to_main_home"
             app:destination="@id/main_home"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePwFragment"
+        android:name="kr.hs.dgsw.smartschool.glass_android.view.fragment.ChangePwFragment"
+        android:label="ChangePwFragment" >
+        <action
+            android:id="@+id/action_changePwFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
