@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
-import kr.hs.dgsw.smartschool.glass_android.network.response.MyProfileResponse
-import kr.hs.dgsw.smartschool.glass_android.network.response.ProfileResponse
-import kr.hs.dgsw.smartschool.glass_android.network.response.User
-import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
+import kr.hs.dgsw.smartschool.glass_android.network.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +14,8 @@ class ProfileViewModel: ViewModel() {
     val onEditProfileEvent = SingleLiveEvent<Unit>()
     val userInfo = MutableLiveData<User>()
     var id = MutableLiveData<String>()
+
+    val message = MutableLiveData<String>()
 
     fun getProfile() {
         val getProfileIdCall = RetrofitClient.myProfileInterface.getMyProfile()
@@ -44,6 +43,9 @@ class ProfileViewModel: ViewModel() {
 
                                 Log.d("Retrofit2", "onResponse: 성공 프로필 ${userInfo.value}")
                             } else {
+                                val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                                    ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(infoResponse.errorBody())
+                                message.value = errorBody?.error
                                 Log.d("Retrofit2", "onResponse: ${infoResponse.code()} 프로필")
                             }
                         }
@@ -56,6 +58,9 @@ class ProfileViewModel: ViewModel() {
 
                     Log.d("Retrofit2", "onResponse: 성공 id")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(idResponse.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${idResponse.code()} id")
                 }
             }

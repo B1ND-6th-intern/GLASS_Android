@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
 import kr.hs.dgsw.smartschool.glass_android.network.request.ProfileEditRequest
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.ProfileEditAvatarResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.ProfileEditResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -24,6 +25,7 @@ class EditProfileViewModel : ViewModel() {
 
     val name = MutableLiveData<String>()
     val introduction = MutableLiveData<String>()
+    val message = MutableLiveData<String>()
 
     var avatar = MutableLiveData<ArrayList<File>>(arrayListOf())
 
@@ -48,6 +50,9 @@ class EditProfileViewModel : ViewModel() {
                     onEditCheckEvent.call()
                     Log.d("Retrofit2", "onResponse: 성공 editProfile")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()} editProfile")
                 }
             }
@@ -76,6 +81,9 @@ class EditProfileViewModel : ViewModel() {
                     onAvatarCheckEvent.call()
                     Log.d("Retrofit2", "onResponse: 성공 edit avatar")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()} edit avatar")
                 }
             }

@@ -89,6 +89,10 @@ class DetailFragment : Fragment() {
                 } else {
                     binding.btnPostHeart.setBackgroundResource(R.drawable.btn_heart_w)
                 }
+
+                message.observe(this@DetailFragment.viewLifecycleOwner, {
+                    Toast.makeText(context, "${message.value}", Toast.LENGTH_SHORT).show()
+                })
             })
 
             commentsList.observe(this@DetailFragment.viewLifecycleOwner, {

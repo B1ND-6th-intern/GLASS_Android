@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.HomeResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.LikeResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writings
@@ -14,6 +15,7 @@ import retrofit2.Response
 class HomeViewModel: ViewModel() {
     val postList = MutableLiveData<List<Writings>>()
     val id = MutableLiveData<String>()
+    val message = MutableLiveData<String>()
 
     fun getHomePost() {
         val getPostCall = RetrofitClient.homeInterface.homePost()
@@ -27,6 +29,9 @@ class HomeViewModel: ViewModel() {
                     Log.d("Retrofit2", "onResponse: 성공")
 
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
                 }
             }
@@ -46,6 +51,9 @@ class HomeViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     Log.d("Retrofit2", "onResponse: 성공 like")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()} like")
                 }
             }

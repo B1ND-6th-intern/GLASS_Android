@@ -61,6 +61,10 @@ class EditProfileFragment : Fragment() {
             onAvatarCheckEvent.observe(this@EditProfileFragment, {
                 Toast.makeText(context, "프로필 아바타 변경에 성공했습니다", Toast.LENGTH_SHORT).show()
             })
+
+            message.observe(this@EditProfileFragment.viewLifecycleOwner, {
+                Toast.makeText(context, "${message.value}", Toast.LENGTH_SHORT).show()
+            })
         }
 
         return binding.root

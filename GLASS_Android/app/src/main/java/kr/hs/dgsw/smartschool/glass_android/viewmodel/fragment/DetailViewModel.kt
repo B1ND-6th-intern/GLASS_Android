@@ -23,6 +23,8 @@ class DetailViewModel: ViewModel() {
     val onMenuEvent = SingleLiveEvent<Unit>()
     val onHeartEvent = SingleLiveEvent<Unit>()
 
+    val message = MutableLiveData<String>()
+
     // 성공 : 1, 실패 : 0
     val statusDeletePost = MutableLiveData<Int>()
 
@@ -43,6 +45,9 @@ class DetailViewModel: ViewModel() {
                     detailPost.value = result?.writing
                     Log.d("Retrofit2", "onResponse: 성공 Detail")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
                 }
             }
@@ -76,6 +81,9 @@ class DetailViewModel: ViewModel() {
                         commentsList.value = result?.comment
                         onUploadEvent.call()
                     } else {
+                        val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                        message.value = errorBody?.error
                         Log.d("Retrofit2", "onResponse: ${response.code()} comment upload")
                     }
                 }
@@ -104,6 +112,9 @@ class DetailViewModel: ViewModel() {
                     statusDeletePost.value = 1
                     Log.d("Retrofit2", "onResponse: 성공 deletePost")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     statusDeletePost.value = 0
                     Log.d("Retrofit2", "onResponse: ${response.code()} deletePost")
                 }
@@ -129,6 +140,9 @@ class DetailViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     Log.d("Retrofit2", "onResponse: 성공 like")
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()} like")
                 }
             }

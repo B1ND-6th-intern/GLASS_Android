@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.dgsw.smartschool.glass_android.extension.SingleLiveEvent
 import kr.hs.dgsw.smartschool.glass_android.network.RetrofitClient
+import kr.hs.dgsw.smartschool.glass_android.network.response.ErrorResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.PopularPostResponse
 import kr.hs.dgsw.smartschool.glass_android.network.response.Writing
 import retrofit2.Call
@@ -16,6 +17,7 @@ class SearchViewModel: ViewModel() {
     val onPopularDetailEvent = SingleLiveEvent<String>()
     val popularList = MutableLiveData<List<Writing>>()
     val clickPermission = MutableLiveData<Int>()
+    val message = MutableLiveData<String>()
 
     fun onClickBtnSearch() {
         onSearchEvent.call()
@@ -34,6 +36,9 @@ class SearchViewModel: ViewModel() {
                     val result = response.body()
                     popularList.value = result?.writings
                 } else {
+                    val errorBody = RetrofitClient.instance.responseBodyConverter<ErrorResponse>(
+                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
+                    message.value = errorBody?.error
                     Log.d("Retrofit2", "onResponse: ${response.code()}")
                 }
             }
