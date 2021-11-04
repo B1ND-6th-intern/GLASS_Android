@@ -24,6 +24,17 @@ class HomeFragment : Fragment() {
         (activity as? MainActivity)?.setNavVisible(true)
         (activity as? MainActivity)?.binding?.btnSetting?.visibility = View.GONE
         (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.VISIBLE
+        when(MainActivity.permissionWorld) {
+            0 -> {
+                (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.VISIBLE
+            }
+            1 -> {
+                (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.GONE
+            }
+            2 -> {
+                (activity as? MainActivity)?.binding?.btnPosting?.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onCreateView(
@@ -37,6 +48,8 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+
         performViewModel()
 //        binding.swipeRefreshLayout.setOnRefreshListener {
 //            initRecycler()

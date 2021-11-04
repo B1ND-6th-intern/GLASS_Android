@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 1001
+        var permissionWorld = -1
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -44,6 +46,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         with(mainViewModel) {
+            getPermission()
+
+            permissionVal.observe(this@MainActivity, {
+                permissionWorld = permissionVal.value!!
+                when(permissionVal.value) {
+                    0 -> {
+                        binding.btnPosting.visibility = View.VISIBLE
+                    }
+                    1 -> {
+                        binding.btnPosting.visibility = View.GONE
+                    }
+                    2 -> {
+                        binding.btnPosting.visibility = View.VISIBLE
+                    }
+                }
+            })
+            
+            message.observe(this@MainActivity, {
+                Toast.makeText(applicationContext, "${message.value}", Toast.LENGTH_SHORT).show()
+            })
+
             onPostEvent.observe(this@MainActivity, {
                  findNavController(R.id.nav_host_fragment).apply{
 //                     navigateUp()
