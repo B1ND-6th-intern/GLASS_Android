@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
@@ -11,14 +12,28 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
 import kr.hs.dgsw.smartschool.glass_android.databinding.ActivityCheckEmailBinding
 import kr.hs.dgsw.smartschool.glass_android.viewmodel.activity.CheckEmailViewModel
+import kotlin.math.roundToInt
 
 class CheckEmailActivity : AppCompatActivity() {
+
+    private val countDown: CountDownTimer = object : CountDownTimer(300000, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            binding.tvCount.setText("${(millisUntilFinished.toFloat() / 1000.0f).roundToInt()} 초 남았습니다.\n입력하지 못할 시에 현재 이메일을 다시 사용하지 못합니다.")
+        }
+
+        override fun onFinish() {
+            finish()
+        }
+
+    }
+
     lateinit var binding: ActivityCheckEmailBinding
     lateinit var checkEmailViewModel: CheckEmailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        countDown.start()
         performDataBinding()
 
         with(checkEmailViewModel) {
@@ -39,6 +54,8 @@ class CheckEmailActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "${message.value}", Toast.LENGTH_SHORT).show()
             })
         }
+
+
     }
 
     override fun onBackPressed() {

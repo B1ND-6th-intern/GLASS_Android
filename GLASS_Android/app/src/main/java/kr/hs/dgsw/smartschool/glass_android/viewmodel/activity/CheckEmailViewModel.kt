@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.glass_android.viewmodel.activity
 
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
