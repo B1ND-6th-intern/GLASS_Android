@@ -14,6 +14,7 @@ import android.app.Activity
 import android.content.SharedPreferences
 import android.os.TokenWatcher
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         performDataBinding()
 
         with(loginViewModel) {

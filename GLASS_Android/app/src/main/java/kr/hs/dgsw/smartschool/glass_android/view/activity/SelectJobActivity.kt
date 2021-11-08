@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.glass_android.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
@@ -15,6 +16,7 @@ class SelectJobActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         performDataBinding()
 
         with(selectJobViewModel) {
