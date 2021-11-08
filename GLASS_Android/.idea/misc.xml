@@ -75,7 +75,12 @@
         <entry key="app/src/main/res/drawable/button_design.xml" value="0.165625" />
         <entry key="app/src/main/res/drawable/edit_signup.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/drawable/ic_btn_back.xml" value="0.165625" />
+        <entry key="app/src/main/res/drawable/ic_btn_home.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable/ic_btn_profile.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable/ic_home_b.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/drawable/ic_profile_b.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable/ic_profile_w.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/layout/activity_check_email.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
@@ -95,6 +100,7 @@
         <entry key="app/src/main/res/layout/item_popular_post.xml" value="0.14947916666666666" />
         <entry key="app/src/main/res/layout/item_post_image.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/item_profile_post.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/menu/bottom_navi_menu.xml" value="0.2" />
         <entry key="app/src/main/res/xml/settings.xml" value="0.26708345383496873" />
       </map>
     </option>

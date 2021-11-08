@@ -21,6 +21,6 @@
         android:id="@+id/main_profile"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/ic_img_profile"
+        android:icon="@drawable/ic_btn_profile"
         android:title=""/>
 </menu>
