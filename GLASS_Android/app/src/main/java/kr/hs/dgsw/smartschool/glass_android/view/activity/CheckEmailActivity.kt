@@ -1,9 +1,11 @@
 package kr.hs.dgsw.smartschool.glass_android.view.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartschool.glass_android.R
@@ -19,9 +21,6 @@ class CheckEmailActivity : AppCompatActivity() {
         performDataBinding()
 
         with(checkEmailViewModel) {
-            onBackSignUpEvent.observe(this@CheckEmailActivity, {
-                finish()
-            })
 
             onCheckEvent.observe(this@CheckEmailActivity, {
                 val intent = Intent(this@CheckEmailActivity, LoginActivity::class.java)
@@ -39,6 +38,23 @@ class CheckEmailActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "${message.value}", Toast.LENGTH_SHORT).show()
             })
         }
+    }
+
+    override fun onBackPressed() {
+        val eventHandler =
+            DialogInterface.OnClickListener { p0, p1 ->
+                if (p1 == DialogInterface.BUTTON_POSITIVE) {
+                    finish()
+                }
+            }
+        android.app.AlertDialog.Builder(this).run {
+            setTitle("뒤로가기")
+            setMessage("뒤로 가신다면 현재 이메일을 다시 사용할 수 없습니다!")
+            setPositiveButton("뒤로가기", eventHandler)
+            setNegativeButton("취소", eventHandler)
+            show()
+        }
+        //super.onBackPressed()
     }
 
     private fun performDataBinding() {

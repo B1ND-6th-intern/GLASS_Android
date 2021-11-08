@@ -15,7 +15,6 @@ import retrofit2.Response
 
 class CheckEmailViewModel : ViewModel() {
     val onCheckEvent = SingleLiveEvent<Unit>()
-    val onBackSignUpEvent = SingleLiveEvent<Unit>()
     val onExceedCount = SingleLiveEvent<Unit>()
 
 
@@ -77,9 +76,6 @@ class CheckEmailViewModel : ViewModel() {
                 Log.d("Retrofit2", "onFailure: $t")
             }
         })
-    }
-    fun onClickBackSignUp() {
-        onBackSignUpEvent.call()
     }
 
 }
