@@ -68,7 +68,7 @@ class ProfileFragment : Fragment() {
                 binding.tvIntroduce.text = it.introduction
                 UNITE_INTRO = it.introduction
 
-                var reUrl: String = "http://api.glass.b1nd.com/uploads${it.avatar}"
+                var reUrl: String = "http://10.80.163.231:8080/uploads${it.avatar}"
 
                 Glide.with(binding.root)
                     .load(reUrl)

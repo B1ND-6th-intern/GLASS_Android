@@ -48,7 +48,7 @@ class ProfilePostRecyclerAdapter(val lifecycleOwner: LifecycleOwner) :
             binding.lifecycleOwner = lifecycleOwner
 
             // 준호
-             var reUrl: String = "http://api.glass.b1nd.com/uploads${profileWriting.imgs[0]}"
+             var reUrl: String = "http://10.80.163.231:8080/uploads${profileWriting.imgs[0]}"
 
             // 준성
             //var reUrl: String = "http://10.80.163.231:8080/uploads${profileWriting.imgs[0]}"

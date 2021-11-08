@@ -35,7 +35,7 @@ class PostedImgAdapter(private val postImgList: List<String>):
     fun bind(url: String) {
       with(url) {
 
-        var reUrl: String = "http://api.glass.b1nd.com/uploads$url"
+        var reUrl: String = "http://10.80.163.231:8080/uploads$url"
 
         Glide.with(binding.root)
           .load(reUrl)

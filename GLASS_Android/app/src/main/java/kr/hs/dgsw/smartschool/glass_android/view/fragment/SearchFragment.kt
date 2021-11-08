@@ -46,9 +46,9 @@ class SearchFragment : Fragment() {
 
             popularList.observe(this@SearchFragment.viewLifecycleOwner, {
 
-                var reimg1: String = "http://api.glass.b1nd.com/uploads${it[0].imgs[0]}"
-                var reimg2: String = "http://api.glass.b1nd.com/uploads${it[1].imgs[0]}"
-                var reimg3: String = "http://api.glass.b1nd.com/uploads${it[2].imgs[0]}"
+                var reimg1: String = "http://10.80.163.231:8080/uploads${it[0].imgs[0]}"
+                var reimg2: String = "http://10.80.163.231:8080/uploads${it[1].imgs[0]}"
+                var reimg3: String = "http://10.80.163.231:8080/uploads${it[2].imgs[0]}"
 
                 id1 = it[0]._id
                 id2 = it[1]._id
